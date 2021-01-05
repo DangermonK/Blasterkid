@@ -3,6 +3,6 @@
 
 enum class TYPE {
 
-	TESTOBJECT,
+	TEST,
 
 };

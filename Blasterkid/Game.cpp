@@ -7,6 +7,7 @@ Game::Game() {
 Game::~Game() {}
 
 void Game::Initialize() {
+	manager->ResolveStack();
 }
 
 void Game::Update() {

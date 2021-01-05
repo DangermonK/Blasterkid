@@ -30,6 +30,8 @@
     <ClInclude Include="ObjectGenerator.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ObjectType.h" />
+    <ClInclude Include="PhysicsObject.h" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
