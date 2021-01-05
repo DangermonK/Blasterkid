@@ -19,3 +19,7 @@ void GameObject::Destroy(GameObject* obj) {
 GameObject* GameObject::Instantiate(const TYPE& t, const Vector& position) {
 	return game->Instantiate(t, position);
 }
+
+Vector GameObject::GetPosition() {
+	return position;
+}

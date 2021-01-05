@@ -18,5 +18,8 @@
     <ClInclude Include="Vector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

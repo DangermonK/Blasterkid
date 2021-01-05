@@ -4,11 +4,10 @@
 
 class Vector {
 
-private:
+public:
 	float x;
 	float y;
 
-public:
 	Vector() {
 		this->x = 0;
 		this->y = 0;
@@ -28,15 +27,9 @@ public:
 	friend Vector operator+(const Vector& lhs, const Vector& rhs) { return Vector(lhs.x+rhs.x, lhs.y+rhs.y); }
 	friend Vector operator-(const Vector& lhs, const Vector& rhs) { return Vector(lhs.x-rhs.x, lhs.y-rhs.y); }
 	friend Vector operator*(const float& f, const Vector& rhs) { return Vector(f*rhs.x, f*rhs.y); }
+	friend Vector operator*(const Vector& rhs, const float& f) { return Vector(f*rhs.x, f*rhs.y); }
 	friend Vector operator/(const float& f, const Vector& rhs) { return Vector(rhs.x/f, rhs.y/f); }
-
-	void SetPosition(const float& x, const float& y) {
-		this->x = x;
-		this->y = y;
-	}
-
-	float GetX() { return this->x; }
-	float GetY() { return this->y; }
+	friend Vector operator/(const Vector& rhs, const float& f) { return Vector(rhs.x / f, rhs.y / f); }
 
 	float GetMagnitude() {
 		return sqrtf(x * x + y * y);

@@ -38,9 +38,6 @@
     <ClInclude Include="Game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectGenerator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
