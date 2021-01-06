@@ -1,6 +1,5 @@
 #include "ObjectManager.h"
 #include "PhysicsObject.h"
-#include <vector>
 
 ObjectManager::ObjectManager() {}
 ObjectManager::~ObjectManager() {}
@@ -15,14 +14,25 @@ void ObjectManager::RemoveObject(GameObject* obj) {
 
 void ObjectManager::ResolveStack() {
 	while (!del_stack.empty()) {
-		obj_map.erase(del_stack.top()->GetId());
+		GameObject* obj = del_stack.top();
+		obj_map.erase(obj->GetId());
 		del_stack.pop();
+
+		PhysicsObject* phx = dynamic_cast<PhysicsObject*>(obj);
+		if (phx != nullptr)
+			phx_list.remove(phx);
+
 	}
 
 	while (!add_stack.empty()) {
 		GameObject* obj = add_stack.top();
-		add_stack.pop();
 		obj_map.insert(std::pair<unsigned int, GameObject*>(obj->GetId(), obj));
+		add_stack.pop();
+
+		PhysicsObject* phx = dynamic_cast<PhysicsObject*>(obj);
+		if (phx != nullptr)
+			phx_list.push_back(phx);
+
 		obj->Initialize();
 	}
 }

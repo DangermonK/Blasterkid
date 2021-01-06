@@ -1,11 +1,11 @@
 #pragma once
 
 class GameObject;
+class PhysicsObject;
 
 #include <map>
 #include <stack>
 #include <list>
-#include <vector>
 #include "GameObject.h"
 
 class ObjectManager
@@ -13,6 +13,7 @@ class ObjectManager
 
 private:
 	std::map<unsigned int, GameObject*> obj_map;
+	std::list<PhysicsObject*> phx_list;
 	std::stack<GameObject*> add_stack;
 	std::stack<GameObject*> del_stack;
 
@@ -38,6 +39,11 @@ public:
 			}
 		}
 		return obj_vec;
+	}
+
+	template<>
+	std::list<PhysicsObject*> GetObjectsOfType<PhysicsObject>() {
+		return phx_list;
 	}
 
 };

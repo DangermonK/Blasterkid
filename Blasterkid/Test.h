@@ -1,6 +1,6 @@
 #pragma once
 
-#include<iostream>
+#include <iostream>
 #include "PhysicsObject.h"
 
 class Test : public PhysicsObject {
