@@ -11,7 +11,7 @@ class ObjectGenerator;
 class Game
 {
 
-private:
+protected:
 	ObjectManager* manager;
 	ObjectGenerator* generator;
 

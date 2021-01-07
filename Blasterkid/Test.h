@@ -10,13 +10,12 @@ public:
 	~Test() {}
 
 	virtual void OnCollision(const GameObject& collider) override {
-		std::cout << "collision\n";
 	}
 
 	virtual void Initialize() {}
 
 	virtual void Update() {
-	
+		position += Vector(0.01f, 0.01f);
 	}
 
 };

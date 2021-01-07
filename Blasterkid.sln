@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StateManager", "StateManage
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AppManager", "AppManager\AppManager.vcxproj", "{1FA5DB85-B0AD-4A2E-84CE-EA87C91F2C3B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IOAdapter", "IOAdapter\IOAdapter.vcxproj", "{04144874-5170-4D7C-88F0-340F34E28B08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{1FA5DB85-B0AD-4A2E-84CE-EA87C91F2C3B}.Release|x64.Build.0 = Release|x64
 		{1FA5DB85-B0AD-4A2E-84CE-EA87C91F2C3B}.Release|x86.ActiveCfg = Release|Win32
 		{1FA5DB85-B0AD-4A2E-84CE-EA87C91F2C3B}.Release|x86.Build.0 = Release|Win32
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Debug|x64.ActiveCfg = Debug|x64
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Debug|x64.Build.0 = Debug|x64
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Debug|x86.ActiveCfg = Debug|Win32
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Debug|x86.Build.0 = Debug|Win32
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Release|x64.ActiveCfg = Release|x64
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Release|x64.Build.0 = Release|x64
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Release|x86.ActiveCfg = Release|Win32
+		{04144874-5170-4D7C-88F0-340F34E28B08}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

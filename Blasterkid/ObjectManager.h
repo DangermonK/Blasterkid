@@ -46,5 +46,15 @@ public:
 		return phx_list;
 	}
 
+	template<>
+	std::list<GameObject*> GetObjectsOfType<GameObject>() {
+		std::list<GameObject*> obj_vec;
+		for (auto it = obj_map.begin(); it != obj_map.end(); it++) {
+			obj_vec.push_back(it->second);
+		}
+		return obj_vec;
+	}
+
+
 };
 

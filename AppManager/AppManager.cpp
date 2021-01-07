@@ -5,16 +5,67 @@
 #include "StateMaschine.h"
 #include "GameState.h"
 
+#include <SFML/Graphics.hpp>
+
+class SFMLAdapter : public DisplayAdapter {
+
+private:
+    sf::RenderWindow frame;
+
+    sf::Font font;
+    sf::RectangleShape rect;
+
+public:
+    SFMLAdapter() {
+        frame.create(sf::VideoMode(800, 600), "Blasterkid");
+        font.loadFromFile("arial.ttf");
+    }
+    ~SFMLAdapter() {}
+
+    virtual void ClearDisplay() override
+    {
+        frame.clear();
+    }
+    virtual void DrawText(const std::string& text) override
+    {
+        sf::Text txt;
+        txt.setFillColor(sf::Color::White);
+        txt.setFont(font);
+        txt.setCharacterSize(36);
+        txt.setString(text);
+        txt.setPosition(sf::Vector2f(20, 20));
+        frame.draw(txt);
+    }
+
+    virtual void Display() override
+    {
+        frame.display();
+    }
+
+    virtual void DrawRect(const float& x, const float& y, const float& w, const float& h) override
+    {
+        rect.setPosition(x, y);
+        rect.setSize(sf::Vector2f(w, h));
+        rect.setOutlineThickness(1);
+        rect.setOutlineColor(sf::Color::Green);
+        rect.setFillColor(sf::Color::Transparent);
+        frame.draw(rect);
+    }
+};
+
 int main()
 {
 
-    StateMaschine sm;
+    StateMaschine sm(new SFMLAdapter());
 
     sm.AddState<GameState>(StateType::GAME_STATE);
 
     sm.SetState(StateType::GAME_STATE);
 
-    sm.UpdateState();
+    while (true) {
+        sm.UpdateState();
+        sm.RenderState();
+    }
 
     return 0;
 }

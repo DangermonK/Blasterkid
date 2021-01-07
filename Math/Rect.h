@@ -29,6 +29,8 @@ public:
 	void SetOffset(const Vector& offset) { this->offset = offset; }
 	Vector GetOffset() { return this->offset; }
 
+	Vector GetPosition() { return Vector(position->x + offset.x, position->y + offset.y); }
+
 	bool IsIntersecting(const Rect& other) {
 		return other.position->x + other.offset.x < this->position->x + this->offset.x + this->size.x &&
 			other.position->x + other.offset.x + other.size.x > this->position->x + this->offset.x &&

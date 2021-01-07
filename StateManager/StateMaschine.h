@@ -6,16 +6,20 @@ class State;
 #include "StateType.h"
 #include "State.h"
 
+#include "../IOAdapter/DisplayAdapter.h"
+
 class StateMaschine
 {
 private:
 	std::map<StateType, State*> state_map;
 	StateType current_state;
 
+	DisplayAdapter* display_adapter;
+
 	void InitializeState(StateType state);
 
 public:
-	StateMaschine();
+	StateMaschine(DisplayAdapter* adapter);
 	~StateMaschine();
 
 	template<class T = State>
@@ -26,6 +30,7 @@ public:
 
 	void SetState(StateType state);
 	void UpdateState();
+	void RenderState();
 
 };
 

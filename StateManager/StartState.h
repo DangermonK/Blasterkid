@@ -17,4 +17,6 @@ public:
 
 	virtual void Stop() override {}
 
+	virtual void Render(DisplayAdapter* adapter) override {}
+
 };

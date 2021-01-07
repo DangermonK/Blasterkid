@@ -14,6 +14,10 @@ public:
 	}
 	~PhysicsObject() {}
 
+	Rect GetBounds() {
+		return *rect;
+	}
+
 	bool IsCollision(const PhysicsObject& other) { return rect->IsIntersecting(*other.rect); }
 
 	virtual void OnCollision(const GameObject& collider) = 0;
