@@ -32,6 +32,7 @@
     <ClInclude Include="ObjectType.h" />
     <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="Test.h" />
+    <ClInclude Include="TestB.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

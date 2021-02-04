@@ -11,14 +11,11 @@ class GameObject
 {
 
 private:
-	unsigned int u_id;
 	Game* game;
 
 public:
-	GameObject(const unsigned int& u_id, Game* game, const Vector& position);
+	GameObject(Game* game, const Vector& position);
 	~GameObject();
-
-	unsigned int GetId();
 
 	virtual void Initialize() = 0;
 	virtual void Update() = 0;

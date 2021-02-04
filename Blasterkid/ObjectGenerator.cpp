@@ -8,11 +8,8 @@ ObjectGenerator::ObjectGenerator(Game* game) {
 ObjectGenerator::~ObjectGenerator() {
 }
 
-#include "Test.h"
 GameObject* ObjectGenerator::Instantiate(const TYPE& t, const Vector& position) {
-	switch (t) {
-	case TYPE::TEST: return GenerateObject<Test>(position); 
-	default: break;
+	switch (t) {	default: break;
 	}
 	throw "ObjectGenerator::Instantiate: Type not found.";
 }

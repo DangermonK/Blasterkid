@@ -50,5 +50,8 @@
     <ClInclude Include="Test.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="TestB.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

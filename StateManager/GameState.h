@@ -13,22 +13,26 @@ public:
 	~GameState() {}
 
 	virtual void Initialize() override {
+		
 		Instantiate(TYPE::TEST, Vector(10, 10));
-		Instantiate(TYPE::TEST, Vector(9, 15));
+		Instantiate(TYPE::TEST, Vector(10, 10));
+		
+		
 		Game::Initialize();
 	}
 
 	virtual void Start() override {}
 
 	virtual void Update() override {
+		Game::Update();
 	}
 
 	virtual void Render(DisplayAdapter* adapter) override {
-		auto ph = manager->GetObjectsOfType<PhysicsObject>();
+		auto ph = manager->GetPhxLList();
 	
 		for (auto it = ph.begin(); it != ph.end(); it++) {
-			PhysicsObject* obj = *it;
-			adapter->DrawRect(obj->GetBounds().GetPosition().x, obj->GetBounds().GetPosition().y, obj->GetBounds().GetSize().x, obj->GetBounds().GetSize().y);
+			adapter->DrawRect((*it)->GetBounds().GetPosition().x, (*it)->GetBounds().GetPosition().y, 
+				(*it)->GetBounds().GetSize().x, (*it)->GetBounds().GetSize().y);
 		}
 	}
 

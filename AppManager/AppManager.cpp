@@ -11,6 +11,7 @@ class SFMLAdapter : public DisplayAdapter {
 
 private:
     sf::RenderWindow frame;
+    sf::Event evnt;
 
     sf::Font font;
     sf::RectangleShape rect;
@@ -24,6 +25,15 @@ public:
 
     virtual void ClearDisplay() override
     {
+        if (frame.pollEvent(evnt)) {
+            switch (evnt.type)
+            {
+
+            default:
+                break;
+            }
+        }
+
         frame.clear();
     }
     virtual void DrawText(const std::string& text) override
@@ -46,9 +56,6 @@ public:
     {
         rect.setPosition(x, y);
         rect.setSize(sf::Vector2f(w, h));
-        rect.setOutlineThickness(1);
-        rect.setOutlineColor(sf::Color::Green);
-        rect.setFillColor(sf::Color::Transparent);
         frame.draw(rect);
     }
 };
@@ -62,12 +69,20 @@ int main()
 
     sm.SetState(StateType::GAME_STATE);
 
+    sf::Clock clock;
+    float lastTime = 0;           
+
     while (true) {
+        float currentTime = clock.getElapsedTime().asSeconds();
+        float fps = 1.f / (currentTime - lastTime);
+        lastTime = currentTime;
+        std::cout << fps << std::endl;
         sm.UpdateState();
         sm.RenderState();
     }
 
     return 0;
+
 }
 
 // Programm ausführen: STRG+F5 oder Menüeintrag "Debuggen" > "Starten ohne Debuggen starten"

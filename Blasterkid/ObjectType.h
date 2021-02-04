@@ -4,5 +4,6 @@
 enum class TYPE {
 
 	TEST,
+	TESTB,
 
 };

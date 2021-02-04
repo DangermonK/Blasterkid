@@ -9,7 +9,7 @@ protected:
 	Rect *rect;
 
 public:
-	PhysicsObject(const unsigned int& u_id, Game* game, const Vector& position) : GameObject(u_id, game, position) {
+	PhysicsObject(Game* game, const Vector& position) : GameObject(game, position) {
 		rect = new Rect(&this->position, Vector(10, 10));
 	}
 	~PhysicsObject() {}
@@ -20,6 +20,6 @@ public:
 
 	bool IsCollision(const PhysicsObject& other) { return rect->IsIntersecting(*other.rect); }
 
-	virtual void OnCollision(const GameObject& collider) = 0;
+	virtual void OnCollision(PhysicsObject* collider) = 0;
 
 };

@@ -12,7 +12,7 @@ class ObjectManager
 {
 
 private:
-	std::map<unsigned int, GameObject*> obj_map;
+	std::list<GameObject*> obj_map;
 	std::list<PhysicsObject*> phx_list;
 	std::stack<GameObject*> add_stack;
 	std::stack<GameObject*> del_stack;
@@ -23,7 +23,11 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	void AddObject(GameObject* obj);
+	template<class T = GameObject>
+	void AddObject() {
+		add_stack.push(new T());
+	}
+
 	void RemoveObject(GameObject* obj);
 	
 	void ResolveStack();
@@ -41,6 +45,10 @@ public:
 		return obj_vec;
 	}
 
+	std::list<PhysicsObject*> GetPhxLList() {
+		return phx_list;
+	}
+
 	template<>
 	std::list<PhysicsObject*> GetObjectsOfType<PhysicsObject>() {
 		return phx_list;
@@ -48,12 +56,9 @@ public:
 
 	template<>
 	std::list<GameObject*> GetObjectsOfType<GameObject>() {
-		std::list<GameObject*> obj_vec;
-		for (auto it = obj_map.begin(); it != obj_map.end(); it++) {
-			obj_vec.push_back(it->second);
-		}
-		return obj_vec;
+		return obj_map;
 	}
+
 
 
 };

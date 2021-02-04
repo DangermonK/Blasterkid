@@ -17,8 +17,6 @@ public:
 		this->y = y;
 	}
 	~Vector() {}
-
-	void operator=(const Vector& v) { this->x = v.x; this->y = v.y; }
 	void operator+=(const Vector& v) { this->x += v.x; this->y += v.y; }
 	void operator-=(const Vector& v) { this->x -= v.x; this->y -= v.y; }
 	void operator/=(const float& f) { this->x *= f; this->y *= f; }

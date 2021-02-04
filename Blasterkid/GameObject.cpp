@@ -1,16 +1,11 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const unsigned int& u_id, Game* game, const Vector& position) {
-	this->u_id = u_id;
+GameObject::GameObject(Game* game, const Vector& position) {
 	this->game = game;
 	this->position = position;
 }
 
 GameObject::~GameObject() {}
-
-unsigned int GameObject::GetId() {
-	return u_id;
-}
 
 void GameObject::Destroy(GameObject* obj) {
 	game->Destroy(obj);
