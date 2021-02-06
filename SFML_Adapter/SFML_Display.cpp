@@ -20,22 +20,39 @@ bool SFMLDisplay::IsEvent() {
 	return frame->pollEvent(*evnt);
 }
 
+KeyCode MapKey(sf::Event::KeyEvent e) {
+	switch (e.code)
+	{
+	case sf::Keyboard::W: return KeyCode::W;
+	case sf::Keyboard::A: return KeyCode::A;
+	case sf::Keyboard::S: return KeyCode::S;
+	case sf::Keyboard::D: return KeyCode::D;
+	case sf::Keyboard::Up: return KeyCode::UP;
+	case sf::Keyboard::Down: return KeyCode::DOWN;
+	case sf::Keyboard::Left: return KeyCode::LEFT;
+	case sf::Keyboard::Right: return KeyCode::RIGHT;
+	case sf::Keyboard::LShift: return KeyCode::LEFT_SHIFT;
+	case sf::Keyboard::RShift: return KeyCode::RIGHT_SHIFT;
+	case sf::Keyboard::LControl: return KeyCode::LEFT_CTRL;
+	case sf::Keyboard::RControl: return KeyCode::RIGHT_CTRL;
+	case sf::Keyboard::Space: return KeyCode::SPACE;
+	case sf::Keyboard::Return: return KeyCode::RETURN;
+	default: return KeyCode::UNKNOWN;
+	}
+}
+
 Event& SFMLDisplay::GetEvent() {
 	Event& e = *new Event();
 	switch (evnt->type) {
 	case sf::Event::Closed: e.type = Event::CLOSED; break;
 	case sf::Event::KeyPressed:
 		e.type = Event::KEY_DOWN;
-		switch (evnt->key.code)
-		{
-		case sf::Keyboard::A: e.key = KeyCode::A; break;
-		case sf::Keyboard::B: e.key = KeyCode::B; break;
-		case sf::Keyboard::C: e.key = KeyCode::C; break;
-		case sf::Keyboard::D: e.key = KeyCode::D; break;
-		default: e.key = KeyCode::UNKNOWN; break;
-		}
+		e.key = MapKey(evnt->key);
 		break;
-	case sf::Event::KeyReleased: e.type = Event::KEY_UP; break;
+	case sf::Event::KeyReleased:
+		e.type = Event::KEY_UP;
+		e.key = MapKey(evnt->key);
+		break;
 	default: e.type = Event::UNKNOWN; break;
 	}
 	return e;

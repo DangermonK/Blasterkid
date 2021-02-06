@@ -5,11 +5,14 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	texture->create(width, height);
 	display_sprite.setTexture(texture->getTexture());
 
-	rect_shape = new sf::RectangleShape();
-	text = new sf::Text();
-
-	font.loadFromFile("arial.ttf");
-	this->text->setFont(font);
+	blue_rect = new sf::RectangleShape();
+	blue_rect->setFillColor(sf::Color::Blue);
+	red_rect = new sf::RectangleShape();
+	red_rect->setFillColor(sf::Color::Red);
+	green_rect = new sf::RectangleShape();
+	green_rect->setFillColor(sf::Color::Green);
+	magenta_rect = new sf::RectangleShape();
+	magenta_rect->setFillColor(sf::Color::Magenta);
 
 }
 SFMLRenderer::~SFMLRenderer() {}
@@ -18,21 +21,31 @@ void SFMLRenderer::Clear() {
 	texture->clear();
 }
 
-void SFMLRenderer::DrawBox(const float& x, const float& y, const float& w, const float& h) const {
-	rect_shape->setPosition(x, y);
-	rect_shape->setSize(sf::Vector2f(w, h));
-	texture->draw(*rect_shape);
+void SFMLRenderer::DrawBlueBox(const float& x, const float& y, const float& w, const float& h) const {
+	blue_rect->setSize(sf::Vector2f(w, h));
+	blue_rect->setPosition(x, y);
+	texture->draw(*blue_rect);
+}
+
+void SFMLRenderer::DrawRedBox(const float& x, const float& y, const float& w, const float& h) const {
+	red_rect->setSize(sf::Vector2f(w, h));
+	red_rect->setPosition(x, y);
+	texture->draw(*red_rect);
+}
+
+void SFMLRenderer::DrawGreenBox(const float& x, const float& y, const float& w, const float& h) const {
+	green_rect->setSize(sf::Vector2f(w, h));
+	green_rect->setPosition(x, y);
+	texture->draw(*green_rect);
+}
+
+void SFMLRenderer::DrawMagentaBox(const float& x, const float& y, const float& w, const float& h) const {
+	magenta_rect->setSize(sf::Vector2f(w, h));
+	magenta_rect->setPosition(x, y);
+	texture->draw(*magenta_rect);
 }
 
 void SFMLRenderer::DrawUIButton(const float& x, const float& y, const std::string& text) const {
-
-	this->text->setString(text);
-	this->text->setCharacterSize(20);
-	this->text->setPosition(x + this->text->getCharacterSize() * 0.5, y + this->text->getCharacterSize() * 0.4);
-	this->text->setFillColor(sf::Color::Red);
-	int width = (text.length() * this->text->getCharacterSize()) * 0.5;
-	DrawBox(x, y, width + this->text->getCharacterSize(), this->text->getCharacterSize() * 2);
-	texture->draw(*this->text);
 }
 
 void SFMLRenderer::Render()

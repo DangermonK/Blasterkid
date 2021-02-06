@@ -11,7 +11,10 @@ public:
 
 	virtual void Clear() override;
 
-	virtual void DrawBox(const float& x, const float& y, const float& w, const float& h) const override;
+	virtual void DrawBlueBox(const float& x, const float& y, const float& w, const float& h) const override;
+	virtual void DrawRedBox(const float& x, const float& y, const float& w, const float& h) const override;
+	virtual void DrawGreenBox(const float& x, const float& y, const float& w, const float& h) const override;
+	virtual void DrawMagentaBox(const float& x, const float& y, const float& w, const float& h) const override;
 
 	virtual void DrawUIButton(const float& x, const float& y, const std::string& text) const override;
 
@@ -23,8 +26,9 @@ private:
 	sf::RenderTexture* texture;
 	sf::Sprite display_sprite;
 
-	sf::RectangleShape* rect_shape;
-	sf::Text* text;
-	sf::Font font;
+	sf::RectangleShape *blue_rect;
+	sf::RectangleShape *red_rect;
+	sf::RectangleShape *green_rect;
+	sf::RectangleShape *magenta_rect;
 
 };

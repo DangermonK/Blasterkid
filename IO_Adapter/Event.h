@@ -1,6 +1,6 @@
 #pragma once
 
-enum class KeyCode { A, B, C, D, UNKNOWN };
+enum class KeyCode { W, A, S, D, UP, DOWN, LEFT, RIGHT, RIGHT_CTRL, LEFT_CTRL, RIGHT_SHIFT, LEFT_SHIFT, SPACE, RETURN, UNKNOWN };
 enum class MouseButton { LEFT, RIGHT, MIDDLE };
 
 class Event {
