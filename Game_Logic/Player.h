@@ -2,7 +2,7 @@
 
 #include "GridObject.h"
 
-class Player : public GridObject 
+class Player : public GridObject
 {
 
 public:

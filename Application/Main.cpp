@@ -19,7 +19,7 @@ public:
 		map = new GridMap(20, 20);
 		for (int i = 0; i < 20; i++)
 			for (int j = 0; j < 20; j++)
-				map->SetCell(j, i, (MapType)(rand() % (int)MapType::COUNT));
+				map->SetCell(j, i, (GridMapType)(rand() % (int)GridMapType::COUNT));
 
 		player = new Player(10, 10);
 
@@ -40,10 +40,14 @@ public:
 		last = now;
 		now = (float)std::clock();
 		delta = (now - last) / CLOCKS_PER_SEC;
-		if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) == MapType::FLOOR) { 
-			map->SetCell(player->getGridPositionX(), player->getGridPositionY(), MapType::DETSRUCTABLE);
-			audio.Play("");
-			player->ResetToLast(); 
+		if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) != GridMapType::FLOOR) {
+			if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) == GridMapType::DETSRUCTABLE) {
+				map->SetCell(player->getGridPositionX(), player->getGridPositionY(), GridMapType::FLOOR);
+				audio.Play("");
+			}
+			else {
+				player->ResetToLast();
+			}
 		}
 		player->Update(delta);
 	}
@@ -52,13 +56,15 @@ public:
 
 	virtual void Render(const RenderAdapter& r) override
 	{
-		for (int i = 0; i < map->GetRows(); i++)
-			for (int j = 0; j < map->GetRows(); j++) {
-				if (map->GetCell(j, i) == MapType::FLOOR)
+		for (unsigned int i = 0; i < map->GetRows(); i++)
+			for (unsigned int j = 0; j < map->GetRows(); j++) {
+				if (map->GetCell(j, i) == GridMapType::FLOOR)
 					r.DrawGreenBox((float)(j * size), (float)(i * size), (float)(size), (float)(size));
+				else if (map->GetCell(j, i) == GridMapType::DETSRUCTABLE)
+					r.DrawRedBox((float)(j * size), (float)(i * size), (float)(size), (float)(size));
 			}
 
-		r.DrawRedBox(player->getPosition().getX() * size + 10, player->getPosition().getY() * size + 10, (float)(size - 20), (float)(size - 20));
+		r.DrawBlueBox(player->getPosition().getX() * size + 10, player->getPosition().getY() * size + 10, (float)(size - 20), (float)(size - 20));
 	
 	}
 

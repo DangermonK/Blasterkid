@@ -2,16 +2,16 @@
 
 GridMap::GridMap(const int& rows, const int& cols) : rows(rows), cols(cols) {
 	const int size = rows * cols;
-	map = new MapType[size];
+	map = new GridMapType[size];
 }
 
 GridMap::~GridMap() {}
 
-const MapType& GridMap::GetCell(const int& x, const int& y) const {
-	return (CheckCell(x, y) ? map[y * rows + x] : MapType::WALL);
+const GridMapType& GridMap::GetCell(const int& x, const int& y) const {
+	return (CheckCell(x, y) ? map[y * rows + x] : GridMapType::WALL);
 }
 
-void GridMap::SetCell(const int& x, const int& y, const MapType& value) const {
+void GridMap::SetCell(const int& x, const int& y, const GridMapType& value) const {
 	if (CheckCell(x, y)) {
 		map[y * rows + x] = value;
 	}

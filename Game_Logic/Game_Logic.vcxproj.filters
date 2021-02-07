@@ -18,9 +18,6 @@
     <ClInclude Include="GridMap.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="MapType.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -28,6 +25,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GridMapType.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
