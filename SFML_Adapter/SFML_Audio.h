@@ -9,15 +9,15 @@ public:
 	SFMLAudio();
 	~SFMLAudio();
 
-	virtual void Play(const std::string& name) override;
+	void Play(const std::string& name) const override;
 
-	virtual void SetMusicVolume(const float& volume) override;
+	void SetMusicVolume(const float& volume) const override;
 
-	virtual void SetSoundEffectsVolume(const float& volume) override;
+	void SetSoundEffectsVolume(const float& volume) const override;
 
 private:
 	sf::Music music;
-	sf::Sound sound1;
+	sf::Sound *sound1;
 	sf::Sound sound2;
 	sf::SoundBuffer buffer1;
 	sf::SoundBuffer buffer2;

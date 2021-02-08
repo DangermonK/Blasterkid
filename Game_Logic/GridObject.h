@@ -6,20 +6,24 @@
 class GridObject : public GameObject {
 
 public:
-	GridObject(const int& x, const int& y);
-	GridObject();
-	~GridObject();
+	GridObject(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y);
+	GridObject(const ObjectManager& mng, const unsigned int& u_id);
+	virtual ~GridObject();
+
+	void setPosition(const Vector& position);
+	void setPosition(const float& x, const float& y);
 
 	void MoveUp();
 	void MoveDown();
 	void MoveLeft();
 	void MoveRight();
 
-	virtual void Update(const float& delta_time) = 0;
+	virtual void Update(const AudioAdapter& audio) = 0;
 
 	void InterpolatePosition(const float& i);
 	void FlipPositionToLast();
 	void ResetToLast();
+	void ResetToFirst();
 
 	const int& getGridPositionX();
 	const int& getGridPositionY();

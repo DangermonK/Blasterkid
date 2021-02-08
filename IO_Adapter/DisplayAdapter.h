@@ -8,7 +8,7 @@ class DisplayAdapter {
 
 public:
 	DisplayAdapter() {}
-	~DisplayAdapter() {}
+	virtual ~DisplayAdapter() {}
 
 	virtual void Close() = 0;
 	virtual void Display(const T& adapter) = 0;

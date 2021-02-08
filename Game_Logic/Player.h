@@ -1,16 +1,17 @@
 #pragma once
 
 #include "GridObject.h"
+#include "Timer.h"
 
 class Player : public GridObject
 {
 
 public:
-	Player();
-	Player(const int& x, const int& y);
+	Player(const ObjectManager& mng, const unsigned int& u_id);
+	Player(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y);
 	~Player();
 
-	virtual void Update(const float& delta_time) override;
+	void Update(const AudioAdapter& audio) override;
 
 	void PressUp();
 	void PressDown();
@@ -22,9 +23,13 @@ public:
 	void ReleaseLeft();
 	void ReleaseRight();
 
+	void SetMap(GridMap* map);
+
 private:
 	float counter;
 	bool l, r, u, d;
+
+	GridMap* map;
 
 	void UpdatePosition();
 

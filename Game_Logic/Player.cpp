@@ -1,21 +1,25 @@
 #include "Player.h"
 
-Player::Player() : GridObject() {
-	counter = 10;
+Player::Player(const ObjectManager& mng, const unsigned int& u_id) : GridObject(mng, u_id) {
+	map = nullptr;
+	counter = 1;
 	l = r = u = d = false;
 }
-Player::Player(const int& x, const int& y) : GridObject(x, y) {
-	counter = 10;
+Player::Player(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y) : GridObject(mng, u_id, x, y) {
+	map = nullptr;
+	counter = 1;
 	l = r = u = d = false;
 }
-Player::~Player() {}
+Player::~Player() {
+}
 
-void Player::Update(const float& delta_time)
+void Player::Update(const AudioAdapter& audio)
 {
 	if (l || r || u || d) {
 		InterpolatePosition(counter);
-		counter += delta_time * 5;
+		counter += Timer::getDeltaTime() *5;
 		if (counter >= 1) {
+			ResetToFirst();
 			counter = 0;
 			if (u) {
 				MoveUp();
@@ -29,10 +33,21 @@ void Player::Update(const float& delta_time)
 			else if (l) {
 				MoveLeft();
 			}
+			if (map->GetCell(getGridPositionX(), getGridPositionY()) != GridMapType::FLOOR) {
+				if (map->GetCell(getGridPositionX(), getGridPositionY()) == GridMapType::DETSRUCTABLE) {
+					map->SetCell(getGridPositionX(), getGridPositionY(), GridMapType::FLOOR);
+					audio.Play("");
+				}
+				else {
+					ResetToLast();
+				}
+			}
 		}
+	}
+}
 
-	} else if (counter == 0)
-		counter = 1;
+void Player::SetMap(GridMap* map) {
+	this->map = map;
 }
 
 void Player::UpdatePosition() {

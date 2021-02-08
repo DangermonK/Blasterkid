@@ -10,19 +10,34 @@
 
 #include "GridMap.h"
 #include "Player.h"
+#include "Bomb.h"
+
+#include "ObjectManager.h"
+#include "ObjectFactory.h"
 
 #include "Timer.h"
+
+#define CELL_SIZE 10
+
 class Test : public Scene {
 	
 public:
 	Test(SceneManager* manager, AudioAdapter& audio) : Scene(manager, audio) {
-		map = new GridMap(20, 20);
-		for (int i = 0; i < 20; i++)
-			for (int j = 0; j < 20; j++)
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+		mng = ObjectManager();
+		fac = new ObjectFactory(mng);
+		
+		player = fac->Instantiate<Player>();
+		player->setPosition(10, 10);
+		
+		map = fac->Instantiate<GridMap>();
+		map->Create(50, 50);
+		for (int i = 0; i < map->GetRows(); i++)
+			for (int j = 0; j < map->GetCols(); j++)
 				map->SetCell(j, i, (GridMapType)(rand() % (int)GridMapType::COUNT));
 
-		player = new Player(10, 10);
-
+		
+		player->SetMap(map);
 	}
 	~Test() {}
 
@@ -36,32 +51,14 @@ public:
 
 	virtual void Update() override
 	{
-		if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) != GridMapType::FLOOR) {
-			if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) == GridMapType::DETSRUCTABLE) {
-				map->SetCell(player->getGridPositionX(), player->getGridPositionY(), GridMapType::FLOOR);
-				audio.Play("");
-			}
-			else {
-				player->ResetToLast();
-			}
-		}
-		player->Update(Timer::getDeltaTime());
+		mng.Update(audio);
 	}
 
 	int size = 40;
 
 	virtual void Render(const RenderAdapter& r) override
 	{
-		for (unsigned int i = 0; i < map->GetRows(); i++)
-			for (unsigned int j = 0; j < map->GetRows(); j++) {
-				if (map->GetCell(j, i) == GridMapType::FLOOR)
-					r.DrawGreenBox((float)(j * size), (float)(i * size), (float)(size), (float)(size));
-				else if (map->GetCell(j, i) == GridMapType::DETSRUCTABLE)
-					r.DrawRedBox((float)(j * size), (float)(i * size), (float)(size), (float)(size));
-			}
-
-		r.DrawBlueBox(player->getPosition().getX() * size + 10, player->getPosition().getY() * size + 10, (float)(size - 20), (float)(size - 20));
-	
+		mng.Render(r);
 	}
 
 	virtual void HandleInput(const Event& e) override
@@ -87,8 +84,13 @@ public:
 			case KeyCode::DOWN: player->ReleaseDown(); break;
 			case KeyCode::LEFT: player->ReleaseLeft(); break;
 			case KeyCode::RIGHT: player->ReleaseRight(); break;
-			default:
-				break;
+			case KeyCode::LEFT_CTRL:  
+			{
+				Bomb* bomb = fac->Instantiate<Bomb>();
+				bomb->setPosition(Vector(std::roundf(player->getPosition().getX()), std::roundf(player->getPosition().getY())));
+				bomb->SetMap(map);
+			}	break;
+			default: break;
 			}
 			break;
 		default:
@@ -99,15 +101,18 @@ public:
 private:
 
 	float counter = 0;
-	GridMap *map;
+	GridMap* map;
+	ObjectManager mng;
+	ObjectFactory *fac;
 
 	Player* player;
 };
 
+
 int main() {
 
-	SFMLDisplay display(800, 800, "test");
-	SFMLRenderer* renderer = new SFMLRenderer(800, 800);
+	SFMLDisplay display(500, 500, "test");
+	SFMLRenderer* renderer = new SFMLRenderer(500, 500);
 	SFMLAudio* audio = new SFMLAudio();
 	SceneManager manager(renderer, *audio);
 	manager.AddScene<Test>("Start");

@@ -1,15 +1,15 @@
 #include "GridObject.h"
 
-GridObject::GridObject() : GameObject() {
+GridObject::GridObject(const ObjectManager& mng, const unsigned int& u_id) : GameObject(mng, u_id) {
 	this->grid_x = this->grid_lx = 0;
 	this->grid_y = this->grid_ly = 0;
 }
-GridObject::GridObject(const int& x, const int& y) : GameObject(x, y) {
+GridObject::GridObject(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y) : GameObject(mng, u_id, (float)x, (float)y) {
 	this->grid_x = this->grid_lx = x;
 	this->grid_y = this->grid_ly = y;
 }
 
-GridObject::~GridObject() {}
+GridObject::~GridObject() { }
 
 void GridObject::MoveUp() {
 	UpdateLastPosition();
@@ -48,10 +48,27 @@ void GridObject::ResetToLast() {
 	grid_x = grid_lx;
 	grid_y = grid_ly;
 }
+void GridObject::ResetToFirst() {
+	grid_lx = grid_x;
+	grid_ly = grid_y;
+}
 
 void GridObject::UpdateLastPosition() {
 	grid_lx = grid_x;
 	grid_ly = grid_y;
+}
+
+void GridObject::setPosition(const Vector& position) {
+	grid_x = (int)position.getX();
+	grid_y = (int)position.getY();
+	ResetToFirst();
+	this->position = Vector((float)grid_x, (float)grid_y);
+}
+void GridObject::setPosition(const float& x, const float& y) {
+	grid_x = (int)x;
+	grid_y = (int)y;
+	ResetToFirst();
+	this->position = Vector((float)grid_x, (float)grid_y);
 }
 
 const int& GridObject::getGridPositionX() { return grid_x; }

@@ -14,6 +14,8 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	magenta_rect = new sf::RectangleShape();
 	magenta_rect->setFillColor(sf::Color::Magenta);
 
+	size = 20;
+
 }
 SFMLRenderer::~SFMLRenderer() {}
 
@@ -21,27 +23,27 @@ void SFMLRenderer::Clear() {
 	texture->clear();
 }
 
-void SFMLRenderer::DrawBlueBox(const float& x, const float& y, const float& w, const float& h) const {
-	blue_rect->setSize(sf::Vector2f(w, h));
-	blue_rect->setPosition(x, y);
+void SFMLRenderer::DrawBlueBox(const float& x, const float& y) const {
+	blue_rect->setSize(sf::Vector2f(size, size));
+	blue_rect->setPosition(x * size, y * size);
 	texture->draw(*blue_rect);
 }
 
-void SFMLRenderer::DrawRedBox(const float& x, const float& y, const float& w, const float& h) const {
-	red_rect->setSize(sf::Vector2f(w, h));
-	red_rect->setPosition(x, y);
+void SFMLRenderer::DrawRedBox(const float& x, const float& y) const {
+	red_rect->setSize(sf::Vector2f(size, size));
+	red_rect->setPosition(x * size, y * size);
 	texture->draw(*red_rect);
 }
 
-void SFMLRenderer::DrawGreenBox(const float& x, const float& y, const float& w, const float& h) const {
-	green_rect->setSize(sf::Vector2f(w, h));
-	green_rect->setPosition(x, y);
+void SFMLRenderer::DrawGreenBox(const float& x, const float& y) const {
+	green_rect->setSize(sf::Vector2f(size, size));
+	green_rect->setPosition(x * size, y * size);
 	texture->draw(*green_rect);
 }
 
-void SFMLRenderer::DrawMagentaBox(const float& x, const float& y, const float& w, const float& h) const {
-	magenta_rect->setSize(sf::Vector2f(w, h));
-	magenta_rect->setPosition(x, y);
+void SFMLRenderer::DrawMagentaBox(const float& x, const float& y) const {
+	magenta_rect->setSize(sf::Vector2f(size, size));
+	magenta_rect->setPosition(x * size, y * size);
 	texture->draw(*magenta_rect);
 }
 

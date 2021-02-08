@@ -3,19 +3,21 @@
 SFMLAudio::SFMLAudio() : AudioAdapter() {
 
 	buffer1.loadFromFile("blob.wav");
-	sound1.setBuffer(buffer1);
+	sound1 = new sf::Sound();
+	sound1->setBuffer(buffer1);
 
 }
 SFMLAudio::~SFMLAudio() {
+	delete sound1;
 }
 
-void SFMLAudio::Play(const std::string& name) {
-	sound1.play();
+void SFMLAudio::Play(const std::string& name) const {
+	sound1->play();
 }
 
-void SFMLAudio::SetMusicVolume(const float& volume) {
+void SFMLAudio::SetMusicVolume(const float& volume) const {
 }
 
-void SFMLAudio::SetSoundEffectsVolume(const float& volume) {
+void SFMLAudio::SetSoundEffectsVolume(const float& volume) const {
 
 }
