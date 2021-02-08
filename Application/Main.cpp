@@ -5,13 +5,13 @@
 #include "SFML_Display.h"
 #include "SFML_Renderer.h"
 
-#include <ctime>
 #include <random>
 #include <iostream>
 
 #include "GridMap.h"
 #include "Player.h"
 
+#include "Timer.h"
 class Test : public Scene {
 	
 public:
@@ -28,7 +28,6 @@ public:
 
 	virtual void Start() override
 	{
-		now = (float)std::clock();
 	}
 
 	virtual void Quit() override
@@ -37,9 +36,6 @@ public:
 
 	virtual void Update() override
 	{
-		last = now;
-		now = (float)std::clock();
-		delta = (now - last) / CLOCKS_PER_SEC;
 		if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) != GridMapType::FLOOR) {
 			if (map->GetCell(player->getGridPositionX(), player->getGridPositionY()) == GridMapType::DETSRUCTABLE) {
 				map->SetCell(player->getGridPositionX(), player->getGridPositionY(), GridMapType::FLOOR);
@@ -49,7 +45,7 @@ public:
 				player->ResetToLast();
 			}
 		}
-		player->Update(delta);
+		player->Update(Timer::getDeltaTime());
 	}
 
 	int size = 40;
@@ -101,9 +97,6 @@ public:
 	}
 
 private:
-	float now;
-	float last;
-	float delta;
 
 	float counter = 0;
 	GridMap *map;
@@ -121,6 +114,7 @@ int main() {
 	manager.SetScene("Start");
 	bool run = true;
 	while (run) {
+		Timer::RefreshTimer();
 		if (display.IsEvent()) {
 			Event e = display.GetEvent();
 			switch (e.type) {

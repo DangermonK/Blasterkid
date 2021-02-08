@@ -16,6 +16,7 @@ void Player::Update(const float& delta_time)
 		InterpolatePosition(counter);
 		counter += delta_time * 5;
 		if (counter >= 1) {
+			counter = 0;
 			if (u) {
 				MoveUp();
 			}
@@ -28,10 +29,10 @@ void Player::Update(const float& delta_time)
 			else if (l) {
 				MoveLeft();
 			}
-			counter = 0;
 		}
 
-	}
+	} else if (counter == 0)
+		counter = 1;
 }
 
 void Player::UpdatePosition() {
@@ -60,9 +61,7 @@ void Player::UpdatePosition() {
 			counter = 1 - counter;
 		};
 	}
-	else {
-		counter = 1;
-	}
+
 }
 
 void Player::PressUp() { u = true; UpdatePosition(); }
