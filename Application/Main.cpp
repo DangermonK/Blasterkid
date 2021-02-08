@@ -12,28 +12,23 @@
 #include "Player.h"
 #include "Bomb.h"
 
-#include "ObjectManager.h"
-#include "ObjectFactory.h"
+#include "Game.h"
 
 #include "Timer.h"
 
-#define CELL_SIZE 10
-
-class Test : public Scene {
+class Test : public Scene, Game {
 	
 public:
-	Test(SceneManager* manager, AudioAdapter& audio) : Scene(manager, audio) {
-		std::srand(static_cast<unsigned int>(std::time(nullptr)));
-		mng = ObjectManager();
-		fac = new ObjectFactory(mng);
-		
-		player = fac->Instantiate<Player>();
+	Test(SceneManager* manager, AudioAdapter& audio) : Scene(manager, audio), Game() {
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));		
+
+		player = Instantiate<Player>();
 		player->setPosition(10, 10);
-		
-		map = fac->Instantiate<GridMap>();
+
+		map = Instantiate<GridMap>();
 		map->Create(50, 50);
-		for (int i = 0; i < map->GetRows(); i++)
-			for (int j = 0; j < map->GetCols(); j++)
+		for (unsigned int i = 0; i < map->GetRows(); i++)
+			for (unsigned int j = 0; j < map->GetCols(); j++)
 				map->SetCell(j, i, (GridMapType)(rand() % (int)GridMapType::COUNT));
 
 		
@@ -51,14 +46,12 @@ public:
 
 	virtual void Update() override
 	{
-		mng.Update(audio);
+		Game::Update(audio);
 	}
-
-	int size = 40;
 
 	virtual void Render(const RenderAdapter& r) override
 	{
-		mng.Render(r);
+		Game::Render(r);
 	}
 
 	virtual void HandleInput(const Event& e) override
@@ -86,7 +79,7 @@ public:
 			case KeyCode::RIGHT: player->ReleaseRight(); break;
 			case KeyCode::LEFT_CTRL:  
 			{
-				Bomb* bomb = fac->Instantiate<Bomb>();
+				Bomb* bomb = Instantiate<Bomb>();
 				bomb->setPosition(Vector(std::roundf(player->getPosition().getX()), std::roundf(player->getPosition().getY())));
 				bomb->SetMap(map);
 			}	break;
@@ -102,9 +95,6 @@ private:
 
 	float counter = 0;
 	GridMap* map;
-	ObjectManager mng;
-	ObjectFactory *fac;
-
 	Player* player;
 };
 

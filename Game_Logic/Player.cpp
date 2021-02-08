@@ -1,11 +1,11 @@
 #include "Player.h"
 
-Player::Player(const ObjectManager& mng, const unsigned int& u_id) : GridObject(mng, u_id) {
+Player::Player(const Game& mng, const unsigned int& u_id) : GridObject(mng, u_id) {
 	map = nullptr;
 	counter = 1;
 	l = r = u = d = false;
 }
-Player::Player(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y) : GridObject(mng, u_id, x, y) {
+Player::Player(const Game& mng, const unsigned int& u_id, const int& x, const int& y) : GridObject(mng, u_id, x, y) {
 	map = nullptr;
 	counter = 1;
 	l = r = u = d = false;

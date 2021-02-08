@@ -6,8 +6,8 @@
 class GridObject : public GameObject {
 
 public:
-	GridObject(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y);
-	GridObject(const ObjectManager& mng, const unsigned int& u_id);
+	GridObject(const Game& mng, const unsigned int& u_id, const int& x, const int& y);
+	GridObject(const Game& mng, const unsigned int& u_id);
 	virtual ~GridObject();
 
 	void setPosition(const Vector& position);

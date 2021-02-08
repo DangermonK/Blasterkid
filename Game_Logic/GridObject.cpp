@@ -1,10 +1,10 @@
 #include "GridObject.h"
 
-GridObject::GridObject(const ObjectManager& mng, const unsigned int& u_id) : GameObject(mng, u_id) {
+GridObject::GridObject(const Game& mng, const unsigned int& u_id) : GameObject(mng, u_id) {
 	this->grid_x = this->grid_lx = 0;
 	this->grid_y = this->grid_ly = 0;
 }
-GridObject::GridObject(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y) : GameObject(mng, u_id, (float)x, (float)y) {
+GridObject::GridObject(const Game& mng, const unsigned int& u_id, const int& x, const int& y) : GameObject(mng, u_id, (float)x, (float)y) {
 	this->grid_x = this->grid_lx = x;
 	this->grid_y = this->grid_ly = y;
 }

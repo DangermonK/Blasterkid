@@ -10,7 +10,7 @@ void Animation::Play() {
 	play = true;
 }
 void Animation::Play(const int& offset) {
-	current_frame = (offset >= 0 ? (offset < frames ? offset : frames - 1) : 0);
+	current_frame = (offset >= 0 ? (offset < frames ? (float)offset : frames - 1) : 0);
 	play = true;
 }
 void Animation::Stop() {

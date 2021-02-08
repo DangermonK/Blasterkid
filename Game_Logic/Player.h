@@ -2,13 +2,14 @@
 
 #include "GridObject.h"
 #include "Timer.h"
+#include "Bomb.h"
 
 class Player : public GridObject
 {
 
 public:
-	Player(const ObjectManager& mng, const unsigned int& u_id);
-	Player(const ObjectManager& mng, const unsigned int& u_id, const int& x, const int& y);
+	Player(const Game& mng, const unsigned int& u_id);
+	Player(const Game& mng, const unsigned int& u_id, const int& x, const int& y);
 	~Player();
 
 	void Update(const AudioAdapter& audio) override;

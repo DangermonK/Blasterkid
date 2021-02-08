@@ -6,27 +6,27 @@
 class GridMap : public GameObject {
 
 public:
-	GridMap(const ObjectManager& mng, const unsigned int& u_id);
-	GridMap(const ObjectManager& mng, const unsigned int& u_id, const int& rows, const int& cols);
+	GridMap(const Game& mng, const unsigned int& u_id);
+	GridMap(const Game& mng, const unsigned int& u_id, const unsigned int& rows, const unsigned int& cols);
 	~GridMap();
 
-	void Create(const int& rows, const int& cols);
+	void Create(const unsigned int& rows, const unsigned int& cols);
 
-	const GridMapType& GetCell(const int& x, const int& y) const;
+	const GridMapType GetCell(const unsigned int& x, const unsigned int& y) const;
 
-	void SetCell(const int& x, const int& y, const GridMapType& value) const;
+	void SetCell(const unsigned int& x, const unsigned int& y, const GridMapType& value) const;
 
 	virtual void Update(const AudioAdapter& audio) override {};
 	virtual void Render(const RenderAdapter& renderer) override;
 
-	const unsigned int& GetRows() const;
-	const unsigned int& GetCols() const;
+	const unsigned int GetRows() const;
+	const unsigned int GetCols() const;
 
 private:
 	GridMapType* map;
-	int rows;
-	int cols;
+	unsigned int rows;
+	unsigned int cols;
 
-	bool CheckCell(const int& x, const int& y) const;
+	bool CheckCell(const unsigned int& x, const unsigned int& y) const;
 
 };

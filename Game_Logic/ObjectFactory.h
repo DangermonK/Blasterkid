@@ -1,25 +1,25 @@
 #pragma once
 
-#include "ObjectManager.h"
 #include "GameObject.h"
-#include "Player.h"
-#include "GridMap.h"
+#include "Game.h"
+
+class Game;
+class GameObject;
 
 class ObjectFactory
 {
 
 public:
-	ObjectFactory(const ObjectManager& mng);
+	ObjectFactory(const Game& game);
 	~ObjectFactory();
 
 	template<class T = GameObject> T* Instantiate() {
-		T* obj = new T(mng, identification_counter++);
-		mng.AddObject(obj);
+		T* obj = new T(game, identification_counter++);
 		return obj;
 	}
 
 private:
-	const ObjectManager& mng;
+	const Game& game;
 	unsigned int identification_counter;
 
 };

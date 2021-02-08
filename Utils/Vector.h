@@ -12,9 +12,9 @@ public:
 	~Vector();
 
 	void Normalize();
-	const Vector& normalized() const;
+	const Vector normalized() const;
 
-	const float& getMagnitude() const;
+	const float getMagnitude() const;
 
 	void operator=(const Vector& rhs);
 
@@ -29,8 +29,8 @@ public:
 	friend Vector operator*(const float& lhs, const Vector& rhs) { return Vector(rhs.x * lhs, rhs.y * lhs); }
 	friend Vector operator/(const float& lhs, const Vector& rhs) { return Vector(rhs.x / lhs, rhs.y / lhs); }
 
-	const float& getX() const;
-	const float& getY() const;
+	const float getX() const;
+	const float getY() const;
 
 private:
 	float x, y;

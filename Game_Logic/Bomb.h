@@ -7,7 +7,7 @@ class Bomb : public GridObject
 {
 
 public:
-	Bomb(const ObjectManager& mng, const unsigned int& u_id);
+	Bomb(const Game& mng, const unsigned int& u_id);
 	~Bomb();
 
 	void SetMap(GridMap* map);

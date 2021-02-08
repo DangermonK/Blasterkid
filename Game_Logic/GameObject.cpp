@@ -1,12 +1,12 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const ObjectManager& mng, const unsigned int& u_id, const Vector& position) : mng(mng), U_ID(u_id) {
+GameObject::GameObject(const Game& game, const unsigned int& u_id, const Vector& position) : game(game), U_ID(u_id) {
 	this->position = position;
 }
-GameObject::GameObject(const ObjectManager& mng, const unsigned int& u_id, const float& x, const float& y) : mng(mng), U_ID(u_id) {
+GameObject::GameObject(const Game& game, const unsigned int& u_id, const float& x, const float& y) : game(game), U_ID(u_id) {
 	this->position = Vector(x, y);
 }
-GameObject::GameObject(const ObjectManager& mng, const unsigned int& u_id) : mng(mng), U_ID(u_id) {}
+GameObject::GameObject(const Game& game, const unsigned int& u_id) : game(game), U_ID(u_id) {}
 
 GameObject::~GameObject() {}
 

@@ -8,15 +8,17 @@
 #include "RenderAdapter.h"
 #include "AudioAdapter.h"
 
-class ObjectManager;
+#include "Game.h"
+
+class Game;
 
 class GameObject
 {
 
 public:
-	GameObject(const ObjectManager& mng, const unsigned int& u_id);
-	GameObject(const ObjectManager& mng, const unsigned int& u_id, const float& x, const float& y);
-	GameObject(const ObjectManager& mng, const unsigned int& u_id, const Vector& position);
+	GameObject(const Game& game, const unsigned int& u_id);
+	GameObject(const Game& game, const unsigned int& u_id, const float& x, const float& y);
+	GameObject(const Game& game, const unsigned int& u_id, const Vector& position);
 	virtual ~GameObject();
 
 	friend bool operator==(const GameObject& lhs, const GameObject& rhs) { return lhs.U_ID == rhs.U_ID; };
@@ -30,11 +32,11 @@ public:
 
 protected:
 	Vector position;
-
-	const ObjectManager& mng;
+	const Game& game;
 
 private:
 	const unsigned int U_ID;
+	
 
 };
 
