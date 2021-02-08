@@ -11,7 +11,7 @@ public:
 	Game();
 	~Game();
 
-
+	void Start();
 
 private:
 	ObjectFactory *factory;
