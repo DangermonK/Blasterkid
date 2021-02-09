@@ -3,6 +3,7 @@
 SFMLDisplay::SFMLDisplay(const int& width, const int& height, const std::string& title) : DisplayAdapter() {
 	frame = new sf::RenderWindow(sf::VideoMode(width, height), title);
 	frame->setVerticalSyncEnabled(true);
+
 	evnt = new sf::Event();
 }
 SFMLDisplay::~SFMLDisplay() {
