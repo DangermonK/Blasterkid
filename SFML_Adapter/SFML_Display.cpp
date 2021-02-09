@@ -2,9 +2,13 @@
 
 SFMLDisplay::SFMLDisplay(const int& width, const int& height, const std::string& title) : DisplayAdapter() {
 	frame = new sf::RenderWindow(sf::VideoMode(width, height), title);
+	frame->setVerticalSyncEnabled(true);
 	evnt = new sf::Event();
 }
-SFMLDisplay::~SFMLDisplay() {}
+SFMLDisplay::~SFMLDisplay() {
+	delete frame;
+	delete evnt;
+}
 
 void SFMLDisplay::Close() {
 	frame->close();
@@ -37,6 +41,7 @@ KeyCode MapKey(sf::Event::KeyEvent e) {
 	case sf::Keyboard::RControl: return KeyCode::RIGHT_CTRL;
 	case sf::Keyboard::Space: return KeyCode::SPACE;
 	case sf::Keyboard::Return: return KeyCode::RETURN;
+	case sf::Keyboard::Escape: return KeyCode::ESCAPE;
 	default: return KeyCode::UNKNOWN;
 	}
 }

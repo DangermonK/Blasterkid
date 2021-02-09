@@ -17,6 +17,7 @@ public:
 	virtual void DrawMagentaBox(const float& x, const float& y) const override;
 
 	virtual void DrawUIButton(const float& x, const float& y, const std::string& text) const override;
+	virtual void DrawUIButtonRed(const float& x, const float& y, const std::string& text) const override;
 
 	virtual void Render() override;
 
@@ -26,6 +27,8 @@ private:
 	sf::RenderTexture* texture;
 	sf::Sprite display_sprite;
 
+	sf::Font font;
+	sf::Text *text;
 	sf::RectangleShape *blue_rect;
 	sf::RectangleShape *red_rect;
 	sf::RectangleShape *green_rect;

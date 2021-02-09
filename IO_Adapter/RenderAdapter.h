@@ -16,6 +16,7 @@ public:
 	virtual void DrawGreenBox(const float& x, const float& y) const = 0;
 	virtual void DrawMagentaBox(const float& x, const float& y) const = 0;
 	virtual void DrawUIButton(const float& x, const float& y, const std::string& text) const = 0;
+	virtual void DrawUIButtonRed(const float& x, const float& y, const std::string& text) const = 0;
 
 	virtual void Render() = 0;
 

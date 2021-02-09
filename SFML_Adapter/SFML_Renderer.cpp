@@ -14,6 +14,11 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	magenta_rect = new sf::RectangleShape();
 	magenta_rect->setFillColor(sf::Color::Magenta);
 
+	font.loadFromFile("arial.ttf");
+	text = new sf::Text();
+	text->setFont(font);
+	text->setCharacterSize(20);
+
 	size = 20;
 
 }
@@ -48,6 +53,17 @@ void SFMLRenderer::DrawMagentaBox(const float& x, const float& y) const {
 }
 
 void SFMLRenderer::DrawUIButton(const float& x, const float& y, const std::string& text) const {
+	this->text->setFillColor(sf::Color::White);
+	this->text->setPosition(x, y);
+	this->text->setString(text);
+	texture->draw(*this->text);
+}
+
+void SFMLRenderer::DrawUIButtonRed(const float& x, const float& y, const std::string& text) const {
+	this->text->setFillColor(sf::Color::Red);
+	this->text->setPosition(x, y);
+	this->text->setString(text);
+	texture->draw(*this->text);
 }
 
 void SFMLRenderer::Render()

@@ -8,7 +8,18 @@ ObjectManager::ObjectManager() {
 	rem_stack = new std::stack<GameObject*>();
 	add_stack = new std::stack<GameObject*>();
 }
-ObjectManager::~ObjectManager() {}
+ObjectManager::~ObjectManager() {
+	ResolveStack();
+
+	delete rem_stack;
+	delete add_stack;
+
+	for (auto it = obj_list->begin(); it != obj_list->end(); it++) {
+		delete *it;
+	}
+
+	delete obj_list;
+}
 
 void ObjectManager::AddObject(GameObject* obj) const {
 	if (obj != nullptr) {
