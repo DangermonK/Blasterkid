@@ -170,6 +170,12 @@
       <Project>{eb53bad5-e2e2-461a-af51-5fc69cec53e8}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Blasterkid_SFML_Launcher.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Menu.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
