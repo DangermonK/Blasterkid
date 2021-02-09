@@ -7,7 +7,7 @@ template<class T = RenderAdapter>
 class DisplayAdapter {
 
 public:
-	DisplayAdapter() {}
+	DisplayAdapter(const int& width, const int& height, const std::string& title) {}
 	virtual ~DisplayAdapter() {}
 
 	virtual void Close() = 0;

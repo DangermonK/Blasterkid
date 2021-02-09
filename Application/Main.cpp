@@ -191,35 +191,73 @@ private:
 	Player* player;
 };
 
+template<class R = RenderAdapter, class D = DisplayAdapter<R>, class A = AudioAdapter>
+class Application {
+
+public:
+	Application(const int& width, const int& height) {
+		disp = new D(width, height, "test");
+		rnd = new R(width, height);
+		aud = new A();
+		scm = new SceneManager(rnd, *aud);
+	
+		scm->AddScene<GameMenu>("GameMenu");
+		scm->AddScene<Test>("Start");
+
+		scm->SetScene("GameMenu");
+
+		running = false;
+	}
+	~Application() {
+		delete disp;
+		delete rnd;
+		delete aud;
+		delete scm;
+	}
+
+	void Start() {
+		running = true;
+		Run();
+	}
+
+	void Run() {
+		while (running) {
+			Timer::RefreshTimer();
+			if (disp->IsEvent()) {
+				Event e = disp->GetEvent();
+				switch (e.type) {
+				case Event::CLOSED: running = false;  disp->Close(); break;
+				default: scm->OnInput(e); break;
+				}
+
+			}
+			scm->Update();
+			scm->Render();
+			disp->Display(*rnd);
+		}
+	}
+
+	void Stop() {
+		running = false;
+	}
+
+private:
+	bool running;
+
+	D* disp;
+	R* rnd;
+	A* aud;
+	SceneManager* scm;
+
+};
+
 
 int main() {
 
-	SFMLDisplay display(500, 500, "test");
-	SFMLRenderer* renderer = new SFMLRenderer(500, 500);
-	SFMLAudio* audio = new SFMLAudio();
-	SceneManager manager(renderer, *audio);
-	manager.AddScene<GameMenu>("GameMenu");
-	manager.AddScene<Test>("Start");
+	auto app = new Application<SFMLRenderer, SFMLDisplay, SFMLAudio>(800, 600);
+	app->Start();
 	
-	manager.SetScene("GameMenu");
-	bool run = true;
-	while (run) {
-		Timer::RefreshTimer();
-		if (display.IsEvent()) {
-			Event e = display.GetEvent();
-			switch (e.type) {
-			case Event::CLOSED: run = false;  display.Close(); break;
-			default: manager.OnInput(e); break;
-			}
-
-		}
-		manager.Update();
-		manager.Render();
-		display.Display(*renderer);
-	}
-
-	delete renderer;
-	delete audio;
+	delete app;
 
 	return 0;
 }
