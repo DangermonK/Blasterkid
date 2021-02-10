@@ -24,7 +24,7 @@ int main() {
 		
 	auto app = new Blasterkid_SFML_Launcher();
 	app->Start();
-		
+	
 	delete app;
 
 	return 0;

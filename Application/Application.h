@@ -57,7 +57,7 @@ private:
 				case Event::CLOSED: running = false;  disp->Close(); break;
 				default: scm->OnInput(e); break;
 				}
-
+				
 			}
 			scm->Update();
 			scm->Render();

@@ -48,7 +48,7 @@ public:
 	{
 		game->Render(r);
 
-		r.DrawUIButton(0, 0, std::to_string(1 / Timer::getDeltaTime()));
+		r.DrawUIButton(0, 0, std::to_string((int)(1 / Timer::getDeltaTime())) + " FPS");
 	}
 
 	virtual void HandleInput(const Event& e) override

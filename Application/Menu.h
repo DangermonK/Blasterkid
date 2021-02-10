@@ -7,7 +7,7 @@ class GameMenu : public Scene {
 
 public:
 	GameMenu(SceneManager* manager, AudioAdapter& audio) : Scene(manager, audio) {
-
+		index = 0;
 	}
 	~GameMenu() {}
 
@@ -15,10 +15,8 @@ public:
 		menuitems.push_back("Spiel");
 		menuitems.push_back("Editor");
 		menuitems.push_back("Option");
-		menuitems.push_back("Exit");
 
 		active = menuitems.begin();
-		index = 0;
 	}
 
 	virtual void Quit() override

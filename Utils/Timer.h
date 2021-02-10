@@ -11,6 +11,7 @@ public:
 		now = (float)std::clock();
 		delta = ((now - last) / CLOCKS_PER_SEC) * scalar;
 	}
+
 	static void setTimeScalar(const float& scalar) {
 		Timer::scalar = (scalar >= 0 ? scalar : 0);
 	}
@@ -18,8 +19,7 @@ public:
 	static const float& getDeltaTime() { return delta; }
 
 private:
-	Timer();
-	~Timer();
+	Timer() {}
 
 	static float now, last, delta, scalar;
 
