@@ -24,6 +24,9 @@
     <ClInclude Include="SFML_Audio.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="SFML_TextureAtlas.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SFML_Audio.cpp">
@@ -33,6 +36,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="SFML_Renderer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SFML_TextureAtlas.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

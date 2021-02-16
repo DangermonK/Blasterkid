@@ -5,6 +5,7 @@ SFMLAudio::SFMLAudio() : AudioAdapter() {
 	buffer1.loadFromFile("blob.wav");
 	sound1 = new sf::Sound();
 	sound1->setBuffer(buffer1);
+	sound1->setVolume(0);
 
 }
 SFMLAudio::~SFMLAudio() {

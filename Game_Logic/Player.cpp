@@ -55,26 +55,26 @@ void Player::UpdatePosition() {
 	if (u) {
 		if (getLastGridPositionY() - getGridPositionY() < 0) {
 			FlipPositionToLast();
-			counter = 1 - counter;
-		};
+			counter = 1.f - counter;
+		}
 	}
 	else if (d) {
 		if (getLastGridPositionY() - getGridPositionY() > 0) {
 			FlipPositionToLast();
-			counter = 1 - counter;
-		};
+			counter = 1.f - counter;
+		}
 	}
 	else if (r) {
 		if (getLastGridPositionX() - getGridPositionX() > 0) {
 			FlipPositionToLast();
-			counter = 1 - counter;
-		};
+			counter = 1.f - counter;
+		}
 	}
 	else if (l) {
 		if (getLastGridPositionX() - getGridPositionX() < 0) {
 			FlipPositionToLast();
-			counter = 1 - counter;
-		};
+			counter = 1.f - counter;
+		}
 	}
 
 }

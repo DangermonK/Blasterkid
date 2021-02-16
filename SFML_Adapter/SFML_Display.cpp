@@ -1,7 +1,7 @@
 #include "SFML_Display.h"
 
 SFMLDisplay::SFMLDisplay(const int& width, const int& height, const std::string& title) : DisplayAdapter(width, height, title) {
-	frame = new sf::RenderWindow(sf::VideoMode(width, height), title);
+	frame = new sf::RenderWindow(sf::VideoMode(width, height), title, sf::Style::Close);
 	frame->setVerticalSyncEnabled(true);
 	evnt = new sf::Event();
 }

@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "RenderAdapter.h"
+#include "SFML_TextureAtlas.h"
 
 class SFMLRenderer : public RenderAdapter {
 
@@ -25,6 +26,8 @@ public:
 	sf::Sprite GetSprite() const;
 
 private:
+	SFML_TextureAtlas* atlas;
+
 	sf::RenderTexture* texture;
 	sf::Sprite display_sprite;
 

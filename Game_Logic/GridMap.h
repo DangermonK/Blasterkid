@@ -28,5 +28,5 @@ private:
 	unsigned int cols;
 
 	bool CheckCell(const unsigned int& x, const unsigned int& y) const;
-
+	Texture* tx;
 };

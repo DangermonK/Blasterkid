@@ -5,7 +5,10 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	texture->create(width, height);
 	display_sprite.setTexture(texture->getTexture());
 
-	size = 20;
+	size = 40;
+
+	atlas = new SFML_TextureAtlas();
+	atlas->loadFromFile("test.atlas");
 
 	blue_rect = new sf::RectangleShape();
 	blue_rect->setFillColor(sf::Color::Blue);
@@ -33,7 +36,12 @@ void SFMLRenderer::Clear() {
 	texture->clear();
 }
 
-void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y) const {}
+void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y) const {
+	sf::Sprite& sprite = atlas->GetSprite(texture);
+	sprite.setScale(0.15f, 0.15f);
+	sprite.setPosition(x * size, y * size);
+	this->texture->draw(sprite);
+}
 
 void SFMLRenderer::DrawBlueBox(const float& x, const float& y) const {
 	blue_rect->setPosition(x * size, y * size);

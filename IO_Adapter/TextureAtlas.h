@@ -4,15 +4,15 @@
 #include <string>
 #include "Texture.h"
 
-
 class TextureAtlas
 {
 
 public:
-	TextureAtlas(const std::string& path);
-	~TextureAtlas();
+	TextureAtlas();
+	virtual ~TextureAtlas() { }
 
-	const Texture& GetTexture(const int& index) const;
+	virtual void loadFromFile(const std::string& path) = 0;
+	virtual const Texture& GetTexture(const int& index) const = 0;
 
 };
 

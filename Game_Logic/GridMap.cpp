@@ -3,6 +3,7 @@
 GridMap::GridMap(const Game& mng, const unsigned int& u_id) : GameObject(mng, u_id) {
 	cols = rows = 0;
 	map = nullptr;
+	tx = new Texture(0, 0, 0);
 }
 GridMap::GridMap(const Game& mng, const unsigned int& u_id, const unsigned int& rows, const unsigned int& cols) : GameObject(mng, u_id) {
 	this->cols = cols;
@@ -19,7 +20,7 @@ void GridMap::Render(const RenderAdapter& renderer) {
 			if (GetCell(j, i) == GridMapType::FLOOR)
 				renderer.DrawGreenBox((float)j, (float)i);
 			else if (GetCell(j, i) == GridMapType::DETSRUCTABLE)
-				renderer.DrawRedBox((float)j, (float)i);
+				renderer.Draw(*tx,(float)j, (float)i);
 		}
 }
 

@@ -26,7 +26,7 @@ public:
 		player->setPosition(10, 10);
 
 		map = game->Instantiate<GridMap>();
-		map->Create(25, 25);
+		map->Create(15, 15);
 		for (unsigned int i = 0; i < map->GetRows(); i++)
 			for (unsigned int j = 0; j < map->GetCols(); j++)
 				map->SetCell(j, i, (GridMapType)(rand() % (int)GridMapType::COUNT));
