@@ -9,7 +9,7 @@
 class Test : public Scene {
 
 public:
-	Test(SceneManager* manager, AudioAdapter& audio) : Scene(manager, audio) {
+	Test(SceneManager* manager, AudioAdapter& audio, RenderAdapter& renderer) : Scene(manager, audio, renderer) {
 		game = nullptr;
 		player = nullptr;
 		map = nullptr;
@@ -19,10 +19,10 @@ public:
 	virtual void Start() override
 	{
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
 		game = new Game();
 
 		player = game->Instantiate<Player>();
+		player->SetTexture(renderer.LoadFromFile("fries.png"));
 		player->setPosition(10, 10);
 
 		map = game->Instantiate<GridMap>();
@@ -44,11 +44,11 @@ public:
 		game->Update(audio);
 	}
 
-	virtual void Render(const RenderAdapter& r) override
+	virtual void Render() override
 	{
-		game->Render(r);
+		game->Render(renderer);
 
-		r.DrawUIButton(0, 0, std::to_string((int)(1 / Timer::getDeltaTime())) + " FPS");
+		renderer.DrawUIButton(0, 0, std::to_string((int)(1 / Timer::getDeltaTime())) + " FPS");
 	}
 
 	virtual void HandleInput(const Event& e) override

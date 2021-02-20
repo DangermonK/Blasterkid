@@ -18,8 +18,6 @@ public:
 	void MoveLeft();
 	void MoveRight();
 
-	virtual void Update(const AudioAdapter& audio) = 0;
-
 	void InterpolatePosition(const float& i);
 	void FlipPositionToLast();
 	void ResetToLast();

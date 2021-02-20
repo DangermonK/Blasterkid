@@ -170,13 +170,11 @@
     <ClInclude Include="SFML_Audio.h" />
     <ClInclude Include="SFML_Display.h" />
     <ClInclude Include="SFML_Renderer.h" />
-    <ClInclude Include="SFML_TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SFML_Audio.cpp" />
     <ClCompile Include="SFML_Display.cpp" />
     <ClCompile Include="SFML_Renderer.cpp" />
-    <ClCompile Include="SFML_TextureAtlas.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

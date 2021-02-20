@@ -2,13 +2,18 @@
 
 #include <SFML/Graphics.hpp>
 #include "RenderAdapter.h"
-#include "SFML_TextureAtlas.h"
 
 class SFMLRenderer : public RenderAdapter {
 
 public:
 	SFMLRenderer(const int& width, const int& height);
 	~SFMLRenderer();
+
+	virtual Texture LoadFromFile(const std::string& path) override;
+
+	virtual void Draw(const Texture& texture) const override;
+
+	virtual Texture SafeImageToBuffer() override;
 
 	virtual void Clear() override;
 
@@ -26,7 +31,7 @@ public:
 	sf::Sprite GetSprite() const;
 
 private:
-	SFML_TextureAtlas* atlas;
+	std::vector<sf::Sprite> sprite_buffer;
 
 	sf::RenderTexture* texture;
 	sf::Sprite display_sprite;

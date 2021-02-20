@@ -15,7 +15,7 @@ public:
 		disp = new D(width, height, title);
 		rnd = new R(width, height);
 		aud = new A();
-		scm = new SceneManager(rnd, *aud);
+		scm = new SceneManager(*rnd, *aud);
 
 		running = false;
 	}

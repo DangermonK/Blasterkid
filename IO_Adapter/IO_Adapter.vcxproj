@@ -148,7 +148,6 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="RenderAdapter.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioAdapter.cpp" />
@@ -156,7 +155,6 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="RenderAdapter.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureAtlas.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

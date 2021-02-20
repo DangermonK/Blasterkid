@@ -12,12 +12,12 @@ class Scene;
 class SceneManager {
 
 public:
-	SceneManager(RenderAdapter* renderer, AudioAdapter& audio);
+	SceneManager(RenderAdapter& renderer, AudioAdapter& audio);
 	~SceneManager();
 
 	template<class T = Scene>
 	void AddScene(const std::string& name) {
-		scene_vec.insert(std::pair<std::string, Scene*>(name, new T(this, audio)));
+		scene_vec.insert(std::pair<std::string, Scene*>(name, new T(this, audio, renderer)));
 	}
 
 	void SetScene(const std::string& name);
@@ -27,7 +27,7 @@ public:
 	void OnInput(const Event& input_event);
 
 private:
-	RenderAdapter* renderer;
+	RenderAdapter& renderer;
 	AudioAdapter& audio;
 
 	std::map<std::string, Scene*> scene_vec;

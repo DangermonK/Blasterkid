@@ -13,6 +13,7 @@ public:
 	~Player();
 
 	void Update(const AudioAdapter& audio) override;
+	void Render(const RenderAdapter& renderer);
 
 	void PressUp();
 	void PressDown();
@@ -26,13 +27,19 @@ public:
 
 	void SetMap(GridMap* map);
 
+	void SetTexture(const Texture& texture);
+
 private:
 	float counter;
 	bool l, r, u, d;
 
+	Texture txt;
+
 	GridMap* map;
 
 	void UpdatePosition();
+	
+
 
 };
 

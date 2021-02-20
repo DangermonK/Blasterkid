@@ -7,9 +7,6 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 
 	size = 40;
 
-	atlas = new SFML_TextureAtlas();
-	atlas->loadFromFile("test.atlas");
-
 	blue_rect = new sf::RectangleShape();
 	blue_rect->setFillColor(sf::Color::Blue);
 	red_rect = new sf::RectangleShape();
@@ -24,7 +21,6 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	text->setFont(font);
 	text->setCharacterSize(20);
 
-
 	magenta_rect->setSize(sf::Vector2f(size, size));
 	red_rect->setSize(sf::Vector2f(size, size));
 	blue_rect->setSize(sf::Vector2f(size, size));
@@ -36,11 +32,13 @@ void SFMLRenderer::Clear() {
 	texture->clear();
 }
 
+void SFMLRenderer::Draw(const Texture& texture) const {
+}
+
 void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y) const {
-	sf::Sprite& sprite = atlas->GetSprite(texture);
-	sprite.setScale(0.15f, 0.15f);
-	sprite.setPosition(x * size, y * size);
-	this->texture->draw(sprite);
+	sf::Sprite spr = sprite_buffer[texture.getTextureIndex()];
+	spr.setPosition(x * size, y * size);
+	this->texture->draw(spr);
 }
 
 void SFMLRenderer::DrawBlueBox(const float& x, const float& y) const {
@@ -77,11 +75,25 @@ void SFMLRenderer::DrawUIButtonRed(const float& x, const float& y, const std::st
 	texture->draw(*this->text);
 }
 
-void SFMLRenderer::Render()
-{
+void SFMLRenderer::Render() {
 	texture->display();
 }
 
 sf::Sprite SFMLRenderer::GetSprite() const {
 	return display_sprite;
+}
+
+Texture SFMLRenderer::LoadFromFile(const std::string& path)
+{
+	sf::Texture* texture = new sf::Texture();
+	texture->loadFromFile(path);
+	Texture txt(std::distance(sprite_buffer.begin(), sprite_buffer.end()), texture->getSize().x, texture->getSize().y);
+	sprite_buffer.push_back(sf::Sprite(*texture));
+	return txt;
+}
+
+Texture SFMLRenderer::SafeImageToBuffer() {
+	Texture txt(std::distance(sprite_buffer.begin(), sprite_buffer.end()), texture->getSize().x, texture->getSize().y);
+	sprite_buffer.push_back(display_sprite);
+	return txt;
 }

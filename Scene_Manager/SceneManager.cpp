@@ -1,7 +1,6 @@
 #include "SceneManager.h"
 
-SceneManager::SceneManager(RenderAdapter* renderer, AudioAdapter& audio) : audio(audio) {
-	this->renderer = renderer;
+SceneManager::SceneManager(RenderAdapter& renderer, AudioAdapter& audio) : audio(audio), renderer(renderer) {
 	current_scene = nullptr;
 }
 SceneManager::~SceneManager() {}
@@ -11,9 +10,9 @@ void SceneManager::Update() {
 }
 
 void SceneManager::Render() {
-	renderer->Clear();
-	current_scene->Render(*renderer);
-	renderer->Render();
+	renderer.Clear();
+	current_scene->Render();
+	renderer.Render();
 }
 
 void SceneManager::OnInput(const Event& input_event) {

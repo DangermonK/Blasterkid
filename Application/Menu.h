@@ -6,7 +6,7 @@
 class GameMenu : public Scene {
 
 public:
-	GameMenu(SceneManager* manager, AudioAdapter& audio) : Scene(manager, audio) {
+	GameMenu(SceneManager* manager, AudioAdapter& audio, RenderAdapter& renderer) : Scene(manager, audio, renderer) {
 		index = 0;
 	}
 	~GameMenu() {}
@@ -28,16 +28,16 @@ public:
 	{
 	}
 
-	virtual void Render(const RenderAdapter& r) override
+	virtual void Render() override
 	{
 		int pos = 0;
 		for (auto it = menuitems.begin(); it != menuitems.end(); it++) {
 
 			if (it == active) {
-				r.DrawUIButtonRed(110, 100 + pos * 20, *it);
+				renderer.DrawUIButtonRed(110, 100 + pos * 20, *it);
 			}
 			else {
-				r.DrawUIButton(100, 100 + pos * 20, *it);
+				renderer.DrawUIButton(100, 100 + pos * 20, *it);
 			}
 			pos++;
 		}

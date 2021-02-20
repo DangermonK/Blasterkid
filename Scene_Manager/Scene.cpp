@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene(SceneManager* manager, AudioAdapter& audio) : audio(audio) {
+Scene::Scene(SceneManager* manager, AudioAdapter& audio, RenderAdapter& renderer) : audio(audio), renderer(renderer) {
 	this->manager = manager;
 }
 
