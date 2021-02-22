@@ -18,6 +18,8 @@ public:
 		menuitems.push_back("Beenden");
 
 		active = menuitems.begin();
+		menu_click = audio.LoadFromFile("menu_click.wav");
+
 	}
 
 	virtual void Quit() override
@@ -55,12 +57,14 @@ public:
 				if (active != menuitems.begin()) {
 					active--;
 					index--;
+					audio.Play(menu_click);
 				}
 				break;
 			case KeyCode::DOWN:
 				if (active != menuitems.end() - 1) {
 					active++;
 					index++;
+					audio.Play(menu_click);
 				}
 				break;
 			case KeyCode::RETURN:
@@ -86,5 +90,5 @@ private:
 	std::vector<std::string> menuitems;
 	std::vector<std::string>::iterator active;
 	int index;
-
+	Sound menu_click;
 };
