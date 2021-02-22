@@ -10,8 +10,12 @@ GameObject::GameObject(const Game& game, const unsigned int& u_id) : game(game),
 
 GameObject::~GameObject() {}
 
-void GameObject::Render(const RenderAdapter& renderer) {
-	renderer.DrawBlueBox(position.getX(), position.getY());
+void GameObject::SetTexture(const Texture& texture) {
+	this->texture = texture;
+}
+
+Texture GameObject::GetTexture() {
+	return this->texture;
 }
 
 Vector GameObject::getPosition() {

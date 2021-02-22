@@ -3,6 +3,11 @@
 #include "GridMapType.h"
 #include "GameObject.h"
 
+#include "Wall.h"
+#include "Destructable.h"
+
+#include <map>
+
 class GridMap : public GameObject {
 
 public:
@@ -16,17 +21,23 @@ public:
 
 	void SetCell(const unsigned int& x, const unsigned int& y, const GridMapType& value) const;
 
+	void SetWallTexture(const Texture& texture);
+	void SetDestructableTexture(const Texture& texture);
+
 	virtual void Update(const AudioAdapter& audio) override {};
-	virtual void Render(const RenderAdapter& renderer) override;
 
 	const unsigned int GetRows() const;
 	const unsigned int GetCols() const;
 
 private:
 	GridMapType* map;
+	std::map<std::pair<unsigned int, unsigned int>, Wall&> *obj_map;
+
 	unsigned int rows;
 	unsigned int cols;
 
+	Texture wallTexture;
+	Texture destructableTexture;
+
 	bool CheckCell(const unsigned int& x, const unsigned int& y) const;
-	Texture* tx;
 };

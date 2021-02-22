@@ -13,14 +13,6 @@ Player::Player(const Game& mng, const unsigned int& u_id, const int& x, const in
 Player::~Player() {
 }
 
-void Player::SetTexture(const Texture& texture) {
-	this->txt = texture;
-}
-
-void Player::Render(const RenderAdapter& renderer) {
-	renderer.Draw(txt, position.getX(), position.getY());
-}
-
 void Player::Update(const AudioAdapter& audio)
 {
 	if (l || r || u || d) {
@@ -42,13 +34,7 @@ void Player::Update(const AudioAdapter& audio)
 				MoveLeft();
 			}
 			if (map->GetCell(getGridPositionX(), getGridPositionY()) != GridMapType::FLOOR) {
-				if (map->GetCell(getGridPositionX(), getGridPositionY()) == GridMapType::DETSRUCTABLE) {
-					map->SetCell(getGridPositionX(), getGridPositionY(), GridMapType::FLOOR);
-					audio.Play("");
-				}
-				else {
-					ResetToLast();
-				}
+				ResetToLast();
 			}
 		}
 	}

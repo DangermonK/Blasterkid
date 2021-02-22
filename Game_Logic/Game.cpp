@@ -30,7 +30,11 @@ void Game::Render(const RenderAdapter& renderer) {
 #include "Player.h"
 #include "Bomb.h"
 #include "GridMap.h"
+#include "Wall.h"
+#include "Destructable.h"
 
 template Player* Game::Instantiate<Player>() const;
 template Bomb* Game::Instantiate<Bomb>() const;
 template GridMap* Game::Instantiate<GridMap>() const;
+template Wall* Game::Instantiate<Wall>() const;
+template Destructable* Game::Instantiate<Destructable>() const;

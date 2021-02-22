@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-Animation::Animation(const int animation[], const float& speed) : animation(animation), frames((int)(sizeof animation) / (int)(sizeof animation[0])), speed(speed) {
+Animation::Animation(const Texture animation[], const float& speed) : animation(animation), frames((int)(sizeof animation) / (int)(sizeof animation[0])), speed(speed) {
 	current_frame = 0;
 	play = false;
 }
@@ -30,6 +30,6 @@ void Animation::Update() {
 	}
 }
 
-const int& Animation::getCurrentFrame() {
+const Texture& Animation::getCurrentFrame() {
 	return animation[(int)current_frame];
 }

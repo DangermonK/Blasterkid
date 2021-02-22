@@ -11,13 +11,13 @@ public:
 
 	virtual Texture LoadFromFile(const std::string& path) override;
 
-	virtual void Draw(const Texture& texture) const override;
-
-	virtual Texture SafeImageToBuffer() override;
+	virtual void ClearCache() override;
 
 	virtual void Clear() override;
 
+	virtual void Draw(const Texture& texture) const override;
 	virtual void Draw(const Texture& texture, const float& x, const float& y) const override;
+	virtual void Draw(const Texture& texture, const float& x, const float& y, const float& scale) const override;
 	virtual void DrawBlueBox(const float& x, const float& y) const override;
 	virtual void DrawRedBox(const float& x, const float& y) const override;
 	virtual void DrawGreenBox(const float& x, const float& y) const override;
@@ -32,6 +32,7 @@ public:
 
 private:
 	std::vector<sf::Sprite> sprite_buffer;
+	std::vector<sf::Texture*> texture_buffer;
 
 	sf::RenderTexture* texture;
 	sf::Sprite display_sprite;

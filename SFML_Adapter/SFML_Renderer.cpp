@@ -5,7 +5,7 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	texture->create(width, height);
 	display_sprite.setTexture(texture->getTexture());
 
-	size = 40;
+	size = 32;
 
 	blue_rect = new sf::RectangleShape();
 	blue_rect->setFillColor(sf::Color::Blue);
@@ -33,11 +33,19 @@ void SFMLRenderer::Clear() {
 }
 
 void SFMLRenderer::Draw(const Texture& texture) const {
+	this->texture->draw(sprite_buffer[texture.getTextureIndex()]);
 }
 
 void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y) const {
 	sf::Sprite spr = sprite_buffer[texture.getTextureIndex()];
-	spr.setPosition(x * size, y * size);
+	spr.setPosition(x, y);
+	this->texture->draw(spr);
+}
+
+void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y, const float& scale) const {
+	sf::Sprite spr = sprite_buffer[texture.getTextureIndex()];
+	spr.setScale(scale, scale);
+	spr.setPosition(x, y);
 	this->texture->draw(spr);
 }
 
@@ -83,17 +91,22 @@ sf::Sprite SFMLRenderer::GetSprite() const {
 	return display_sprite;
 }
 
+void SFMLRenderer::ClearCache()
+{
+	for (auto it = texture_buffer.begin(); it != texture_buffer.end(); it++) {
+		delete *it;
+	}
+	texture_buffer.clear();
+	sprite_buffer.clear();
+}
+
 Texture SFMLRenderer::LoadFromFile(const std::string& path)
 {
 	sf::Texture* texture = new sf::Texture();
 	texture->loadFromFile(path);
 	Texture txt(std::distance(sprite_buffer.begin(), sprite_buffer.end()), texture->getSize().x, texture->getSize().y);
 	sprite_buffer.push_back(sf::Sprite(*texture));
+	texture_buffer.push_back(texture);
 	return txt;
 }
 
-Texture SFMLRenderer::SafeImageToBuffer() {
-	Texture txt(std::distance(sprite_buffer.begin(), sprite_buffer.end()), texture->getSize().x, texture->getSize().y);
-	sprite_buffer.push_back(display_sprite);
-	return txt;
-}

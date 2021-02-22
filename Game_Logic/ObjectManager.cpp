@@ -45,7 +45,7 @@ void ObjectManager::Update(const AudioAdapter& audio) {
 
 void ObjectManager::Render(const RenderAdapter& renderer) {
 	for (auto it = obj_list->begin(); it != obj_list->end(); it++) {
-		(*it)->Render(renderer);
+		renderer.Draw((*it)->GetTexture(), (*it)->getPosition().getX() * 32, (*it)->getPosition().getY() * 32);
 	}
 }
 

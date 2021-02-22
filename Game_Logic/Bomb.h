@@ -13,7 +13,6 @@ public:
 	void SetMap(GridMap* map);
 
 	void Update(const AudioAdapter& audio) override;
-	void Render(const RenderAdapter& audio) override;
 
 private:
 	float counter;

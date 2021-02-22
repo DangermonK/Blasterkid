@@ -16,8 +16,6 @@ public:
 		rnd = new R(width, height);
 		aud = new A();
 		scm = new SceneManager(*rnd, *aud);
-
-		running = false;
 	}
 	virtual ~Application() {
 		delete disp;
@@ -28,20 +26,14 @@ public:
 
 	void Start() {
 		Initialize(scm);
-		running = true;
+		scm->Start();
 		Run();
-	}
-
-	void Stop() const {
-		running = false;
 	}
 
 protected:
 	SceneManager* scm;
 
 private:
-	bool running;
-
 	D* disp;
 	R* rnd;
 	A* aud;
@@ -49,12 +41,12 @@ private:
 	virtual void Initialize(SceneManager* scm) = 0;
 
 	void Run() {
-		while (running) {
+		while (scm->IsRunning()) {
 			Timer::RefreshTimer();
 			if (disp->IsEvent()) {
 				Event e = disp->GetEvent();
 				switch (e.type) {
-				case Event::CLOSED: running = false;  disp->Close(); break;
+				case Event::CLOSED: scm->Stop();  disp->Close(); return;
 				default: scm->OnInput(e); break;
 				}
 				

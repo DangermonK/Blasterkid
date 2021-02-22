@@ -3,20 +3,18 @@
 #include "Scene.h"
 #include <vector>
 
-class GameMenu : public Scene {
+class Pause : public Scene {
 
 public:
-	GameMenu(SceneManager& manager, AudioAdapter& audio, RenderAdapter& renderer) : Scene(manager, audio, renderer) {
+	Pause(SceneManager& manager, AudioAdapter& audio, RenderAdapter& renderer) : Scene(manager, audio, renderer) {
 		
 	}
-	~GameMenu() {}
+	~Pause() {}
 
 	virtual void Initialize() override
 	{
 		index = 0;
-		menuitems.push_back("Spiel");
-		menuitems.push_back("Editor");
-		menuitems.push_back("Option");
+		menuitems.push_back("Fortsetzen");
 		menuitems.push_back("Beenden");
 
 		active = menuitems.begin();
@@ -67,9 +65,12 @@ public:
 				break;
 			case KeyCode::RETURN:
 				switch (index) {
-				case 0: SetScene("Start"); break;
-				case 3: Stop(); break;
-				case 1: break;
+				case 0: 
+					SetScene("Start"); 
+					break;
+				case 1: 
+					SetScene("GameMenu"); 
+					break;
 				}
 				break;
 			default:
@@ -85,4 +86,5 @@ private:
 	std::vector<std::string> menuitems;
 	std::vector<std::string>::iterator active;
 	int index;
+
 };

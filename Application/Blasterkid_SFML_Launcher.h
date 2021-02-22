@@ -7,6 +7,8 @@
 
 #include "GameScene.h"
 #include "Menu.h"
+#include "Intro.h"
+#include "Pause.h"
 
 class Blasterkid_SFML_Launcher : public Application<SFMLRenderer, SFMLDisplay, SFMLAudio> {
 	
@@ -19,7 +21,9 @@ private:
 	virtual void Initialize(SceneManager* scm) override {
 		scm->AddScene<Test>("Start");
 		scm->AddScene<GameMenu>("GameMenu");
-		scm->SetScene("GameMenu");
+		scm->AddScene<Pause>("Pause");
+		scm->AddScene<Intro>("Intro");
+		scm->SetScene("Intro");
 	}
 
 };

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Texture.h"
 #include "Timer.h"
 #include <iostream>
 
@@ -7,7 +8,7 @@ class Animation
 {
 
 public:
-	Animation(const int animation[], const float& speed);
+	Animation(const Texture animation[], const float& speed);
 	~Animation();
 
 	void Update();
@@ -16,10 +17,10 @@ public:
 	void Stop();
 	void Reset();
 
-	const int& getCurrentFrame();
+	const Texture& getCurrentFrame();
 
 private:
-	const int* animation;
+	const Texture* animation;
 	const int frames;
 	float current_frame;
 	const float speed;

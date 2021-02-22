@@ -24,7 +24,9 @@ public:
 	friend bool operator==(const GameObject& lhs, const GameObject& rhs) { return lhs.U_ID == rhs.U_ID; };
 
 	virtual void Update(const AudioAdapter& audio) = 0;
-	virtual void Render(const RenderAdapter& renderer);
+
+	void SetTexture(const Texture& texture);
+	Texture GetTexture();
 
 	Vector getPosition();
 	void setPosition(const float& x, const float& y);
@@ -33,6 +35,8 @@ public:
 protected:
 	Vector position;
 	const Game& game;
+
+	Texture texture;
 
 private:
 	const unsigned int U_ID;
