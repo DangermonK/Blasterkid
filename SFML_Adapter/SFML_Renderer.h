@@ -18,6 +18,7 @@ public:
 	virtual void Draw(const Texture& texture) const override;
 	virtual void Draw(const Texture& texture, const float& x, const float& y) const override;
 	virtual void Draw(const Texture& texture, const float& x, const float& y, const float& scale) const override;
+	virtual void Draw(const Texture& texture, const float& x, const float& y, const float& scale, const float& alpha) const override;
 	virtual void DrawBlueBox(const float& x, const float& y) const override;
 	virtual void DrawRedBox(const float& x, const float& y) const override;
 	virtual void DrawGreenBox(const float& x, const float& y) const override;

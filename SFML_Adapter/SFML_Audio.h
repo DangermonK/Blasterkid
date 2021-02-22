@@ -2,6 +2,7 @@
 
 #include <SFML/Audio.hpp>
 #include "AudioAdapter.h"
+#include <vector>
 
 class SFMLAudio : public AudioAdapter {
 
@@ -9,17 +10,15 @@ public:
 	SFMLAudio();
 	~SFMLAudio();
 
-	void Play(const std::string& name) const override;
+	virtual Sound LoadFromFile(const std::string& path) override;
+	virtual void ClearCache() override;
 
-	void SetMusicVolume(const float& volume) const override;
-
-	void SetSoundEffectsVolume(const float& volume) const override;
+	virtual void SetMusicVolume(const float& volume) override;
+	virtual void SetSoundEffectsVolume(const float& volume) override;
+	virtual void Play(const Sound& sound) override;
 
 private:
-	sf::Music music;
-	sf::Sound *sound1;
-	sf::Sound sound2;
-	sf::SoundBuffer buffer1;
-	sf::SoundBuffer buffer2;
+	std::vector<sf::Sound*> sound_map;
+	std::vector<sf::SoundBuffer*> buffer_map;
 
 };

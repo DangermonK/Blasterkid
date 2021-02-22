@@ -24,6 +24,5 @@ void Bomb::Update(const AudioAdapter& audio) {
 			map->SetCell(getGridPositionX(), getGridPositionY() - 1, GridMapType::FLOOR);
 		if (map->GetCell(getGridPositionX(), getGridPositionY() + 1) == GridMapType::DETSRUCTABLE)
 			map->SetCell(getGridPositionX(), getGridPositionY() + 1, GridMapType::FLOOR);
-		audio.Play("");
 	}
 }

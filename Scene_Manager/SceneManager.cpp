@@ -37,6 +37,7 @@ void SceneManager::SetScene(const std::string& name) {
 			current_scene->Quit();
 		}
 		
+		audio.ClearCache();
 		renderer.ClearCache();
 
 		current_scene = scene_vec[name];

@@ -49,6 +49,14 @@ void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y, 
 	this->texture->draw(spr);
 }
 
+void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y, const float& scale, const float& alpha) const {
+	sf::Sprite spr = sprite_buffer[texture.getTextureIndex()];
+	spr.setScale(scale, scale);
+	spr.setPosition(x, y);
+	spr.setColor(sf::Color(255,255,255,(int)(alpha*255)));
+	this->texture->draw(spr);
+}
+
 void SFMLRenderer::DrawBlueBox(const float& x, const float& y) const {
 	blue_rect->setPosition(x * size, y * size);
 	texture->draw(*blue_rect);
