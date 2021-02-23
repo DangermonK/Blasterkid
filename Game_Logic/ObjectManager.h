@@ -16,14 +16,14 @@ public:
 	ObjectManager();
 	~ObjectManager();
 
-	void AddObject(GameObject* obj) const;
-	void RemoveObject(GameObject* obj) const;
+	void AddObject(GameObject* obj);
+	void RemoveObject(GameObject* obj);
 
 	void Update(const AudioAdapter& audio);
 	void Render(const RenderAdapter& renderer);
 
 private:
-	bool* resolve;
+	bool resolve;
 
 	std::list<GameObject*> *obj_list;
 	std::stack<GameObject*> *add_stack;

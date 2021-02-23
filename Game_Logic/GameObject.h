@@ -36,11 +36,9 @@ protected:
 	Vector position;
 	const Game& game;
 
-	Texture texture;
-
 private:
 	const unsigned int U_ID;
-	
+	Texture texture;
 
 };
 

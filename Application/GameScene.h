@@ -29,6 +29,7 @@ public:
 		map->Create(15, 15);
 		map->SetTexture(renderer.LoadFromFile("Empty.png"));
 		map->SetWallTexture(renderer.LoadFromFile("Wall.png"));
+		map->SetGrasTexture(renderer.LoadFromFile("Gras.png"));
 		map->SetDestructableTexture(renderer.LoadFromFile("Destructable.png"));
 		for (unsigned int i = 0; i < map->GetRows(); i++)
 			for (unsigned int j = 0; j < map->GetCols(); j++)

@@ -2,7 +2,7 @@
 
 ObjectManager::ObjectManager() {
 	resolve = new bool();
-	*resolve = false;
+	resolve = false;
 
 	obj_list = new std::list<GameObject*>();
 	rem_stack = new std::stack<GameObject*>();
@@ -21,21 +21,21 @@ ObjectManager::~ObjectManager() {
 	delete obj_list;
 }
 
-void ObjectManager::AddObject(GameObject* obj) const {
+void ObjectManager::AddObject(GameObject* obj) {
 	if (obj != nullptr) {
-		*resolve = true;
+		resolve = true;
 		add_stack->push(obj);
 	}
 }
-void ObjectManager::RemoveObject(GameObject* obj) const {
+void ObjectManager::RemoveObject(GameObject* obj) {
 	if (std::find(obj_list->begin(), obj_list->end(), obj) != obj_list->end()) {
-		*resolve = true;
+		resolve = true;
 		rem_stack->push(obj);
 	}
 }
 
 void ObjectManager::Update(const AudioAdapter& audio) {
-	if (*resolve) 
+	if (resolve) 
 		ResolveStack();
 	
 	for (auto it = obj_list->begin(); it != obj_list->end(); it++) {
@@ -45,7 +45,7 @@ void ObjectManager::Update(const AudioAdapter& audio) {
 
 void ObjectManager::Render(const RenderAdapter& renderer) {
 	for (auto it = obj_list->begin(); it != obj_list->end(); it++) {
-		renderer.Draw((*it)->GetTexture(), (*it)->getPosition().getX() * 32, (*it)->getPosition().getY() * 32);
+		renderer.Draw((*it)->GetTexture(), 50+ (*it)->getPosition().getX() * 32, 50 +(*it)->getPosition().getY() * 32, 2);
 	}
 }
 
@@ -61,5 +61,5 @@ void ObjectManager::ResolveStack() {
 		obj_list->push_back(add_stack->top());
 		add_stack->pop();
 	}
-	*resolve = false;
+	resolve = false;
 }

@@ -23,6 +23,7 @@ public:
 
 	void SetWallTexture(const Texture& texture);
 	void SetDestructableTexture(const Texture& texture);
+	void SetGrasTexture(const Texture& texture);
 
 	virtual void Update(const AudioAdapter& audio) override {};
 
@@ -38,6 +39,7 @@ private:
 
 	Texture wallTexture;
 	Texture destructableTexture;
+	Texture grasTexture;
 
 	bool CheckCell(const unsigned int& x, const unsigned int& y) const;
 };

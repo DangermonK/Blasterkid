@@ -7,7 +7,7 @@ class GameMenu : public Scene {
 
 public:
 	GameMenu(SceneManager& manager, AudioAdapter& audio, RenderAdapter& renderer) : Scene(manager, audio, renderer) {
-		
+		index = 0;
 	}
 	~GameMenu() {}
 
@@ -39,10 +39,10 @@ public:
 		for (auto it = menuitems.begin(); it != menuitems.end(); it++) {
 
 			if (it == active) {
-				renderer.DrawUIButtonRed(110, 100 + pos * 20, *it);
+				renderer.DrawUIButtonRed(110, 100 + (float)pos * 20, *it);
 			}
 			else {
-				renderer.DrawUIButton(100, 100 + pos * 20, *it);
+				renderer.DrawUIButton(100, 100 + (float)pos * 20, *it);
 			}
 			pos++;
 		}

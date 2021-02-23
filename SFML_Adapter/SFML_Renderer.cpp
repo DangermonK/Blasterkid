@@ -5,26 +5,10 @@ SFMLRenderer::SFMLRenderer(const int& width, const int& height) : RenderAdapter(
 	texture->create(width, height);
 	display_sprite.setTexture(texture->getTexture());
 
-	size = 32;
-
-	blue_rect = new sf::RectangleShape();
-	blue_rect->setFillColor(sf::Color::Blue);
-	red_rect = new sf::RectangleShape();
-	red_rect->setFillColor(sf::Color::Red);
-	green_rect = new sf::RectangleShape();
-	green_rect->setFillColor(sf::Color::Green);
-	magenta_rect = new sf::RectangleShape();
-	magenta_rect->setFillColor(sf::Color::Magenta);
-
 	font.loadFromFile("arial.ttf");
 	text = new sf::Text();
 	text->setFont(font);
 	text->setCharacterSize(20);
-
-	magenta_rect->setSize(sf::Vector2f(size, size));
-	red_rect->setSize(sf::Vector2f(size, size));
-	blue_rect->setSize(sf::Vector2f(size, size));
-	green_rect->setSize(sf::Vector2f(size, size));
 }
 SFMLRenderer::~SFMLRenderer() {}
 
@@ -55,26 +39,6 @@ void SFMLRenderer::Draw(const Texture& texture, const float& x, const float& y, 
 	spr.setPosition(x, y);
 	spr.setColor(sf::Color(255,255,255,(int)(alpha*255)));
 	this->texture->draw(spr);
-}
-
-void SFMLRenderer::DrawBlueBox(const float& x, const float& y) const {
-	blue_rect->setPosition(x * size, y * size);
-	texture->draw(*blue_rect);
-}
-
-void SFMLRenderer::DrawRedBox(const float& x, const float& y) const {
-	red_rect->setPosition(x * size, y * size);
-	texture->draw(*red_rect);
-}
-
-void SFMLRenderer::DrawGreenBox(const float& x, const float& y) const {
-	green_rect->setPosition(x * size, y * size);
-	texture->draw(*green_rect);
-}
-
-void SFMLRenderer::DrawMagentaBox(const float& x, const float& y) const {
-	magenta_rect->setPosition(x * size, y * size);
-	texture->draw(*magenta_rect);
 }
 
 void SFMLRenderer::DrawUIButton(const float& x, const float& y, const std::string& text) const {
@@ -112,7 +76,7 @@ Texture SFMLRenderer::LoadFromFile(const std::string& path)
 {
 	sf::Texture* texture = new sf::Texture();
 	texture->loadFromFile(path);
-	Texture txt(std::distance(sprite_buffer.begin(), sprite_buffer.end()), texture->getSize().x, texture->getSize().y);
+	Texture txt((unsigned int)std::distance(sprite_buffer.begin(), sprite_buffer.end()), texture->getSize().x, texture->getSize().y);
 	sprite_buffer.push_back(sf::Sprite(*texture));
 	texture_buffer.push_back(texture);
 	return txt;

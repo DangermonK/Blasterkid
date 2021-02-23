@@ -12,9 +12,9 @@ public:
 	{
 		logo = renderer.LoadFromFile("Dangermonk_Logo.png");
 		intro = audio.LoadFromFile("intro.wav");
-		timer = 7;
+		timer = 6;
 		alpha = 0;
-		scale = 0.6f;
+		scale = .7f;
 		played = false;
 	}
 

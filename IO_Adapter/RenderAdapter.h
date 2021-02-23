@@ -18,10 +18,7 @@ public:
 	virtual void Draw(const Texture& texture, const float& x, const float& y) const = 0;
 	virtual void Draw(const Texture& texture, const float& x, const float& y, const float& scale) const = 0;
 	virtual void Draw(const Texture& texture, const float& x, const float& y, const float& scale, const float& alpha) const = 0;
-	virtual void DrawBlueBox(const float& x, const float& y) const = 0;
-	virtual void DrawRedBox(const float& x, const float& y) const = 0;
-	virtual void DrawGreenBox(const float& x, const float& y) const = 0;
-	virtual void DrawMagentaBox(const float& x, const float& y) const = 0;
+
 	virtual void DrawUIButton(const float& x, const float& y, const std::string& text) const = 0;
 	virtual void DrawUIButtonRed(const float& x, const float& y, const std::string& text) const = 0;
 

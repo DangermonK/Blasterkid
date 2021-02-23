@@ -14,6 +14,10 @@ void Bomb::SetMap(GridMap* map) {
 
 void Bomb::Update(const AudioAdapter& audio) {
 	counter += Timer::getDeltaTime();
+	if (counter > 1) {
+		MoveRight();
+		counter = 0;
+	}
 	if (counter > 3) {
 		game.Destroy(this);
 		if(map->GetCell(getGridPositionX() - 1, getGridPositionY()) == GridMapType::DETSRUCTABLE)

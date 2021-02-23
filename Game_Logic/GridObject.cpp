@@ -54,6 +54,7 @@ void GridObject::ResetToFirst() {
 }
 
 void GridObject::UpdateLastPosition() {
+	position = Vector(grid_x, grid_y);
 	grid_lx = grid_x;
 	grid_ly = grid_y;
 }
