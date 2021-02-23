@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() {
+Game::Game(AudioAdapter& audio, RenderAdapter& renderer) : audio(audio), renderer(renderer) {
 	manager = new ObjectManager();
 	factory = new ObjectFactory(*this);
 }
@@ -19,11 +19,11 @@ template<class T> T* Game::Instantiate() const {
 	return t;
 }
 
-void Game::Update(const AudioAdapter& audio) {
+void Game::Update() {
 	manager->Update(audio);
 }
 
-void Game::Render(const RenderAdapter& renderer) {
+void Game::Render() {
 	manager->Render(renderer);
 }
 

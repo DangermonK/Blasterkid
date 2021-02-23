@@ -8,6 +8,7 @@ ObjectManager::ObjectManager() {
 	rem_stack = new std::stack<GameObject*>();
 	add_stack = new std::stack<GameObject*>();
 }
+
 ObjectManager::~ObjectManager() {
 	ResolveStack();
 
@@ -41,11 +42,14 @@ void ObjectManager::Update(const AudioAdapter& audio) {
 	for (auto it = obj_list->begin(); it != obj_list->end(); it++) {
 		(*it)->Update(audio);
 	}
+
+	obj_list->sort([](GameObject* l, GameObject* r) { return l->getZIndex() < r->getZIndex(); });
+	obj_list->sort([](GameObject* l, GameObject* r) { return l->getZIndex() == r->getZIndex() && l->getPosition().getY() < r->getPosition().getY(); });
 }
 
 void ObjectManager::Render(const RenderAdapter& renderer) {
 	for (auto it = obj_list->begin(); it != obj_list->end(); it++) {
-		renderer.Draw((*it)->GetTexture(), 50+ (*it)->getPosition().getX() * 32, 50 +(*it)->getPosition().getY() * 32, 2);
+		renderer.Draw((*it)->GetTexture(), (*it)->getPosition().getX() * (*it)->GetTexture().getWidth() * 2, (*it)->getPosition().getY() * (*it)->GetTexture().getHeight() * 2*0.8f, 2);
 	}
 }
 

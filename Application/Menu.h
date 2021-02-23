@@ -15,10 +15,10 @@ public:
 	{
 		index = 0;
 		menuitems.push_back("Spiel");
-		menuitems.push_back("Editor");
-		menuitems.push_back("Option");
+		menuitems.push_back("Credits");
 		menuitems.push_back("Beenden");
 
+		bomb = renderer.LoadFromFile("bomb_render.png");
 		menu_click = audio.LoadFromFile("menu_click.wav");
 
 		active = menuitems.begin();
@@ -35,6 +35,9 @@ public:
 
 	virtual void Render() override
 	{
+
+		renderer.Draw(bomb, 200, 200);
+
 		int pos = 0;
 		for (auto it = menuitems.begin(); it != menuitems.end(); it++) {
 
@@ -46,6 +49,7 @@ public:
 			}
 			pos++;
 		}
+
 	}
 
 	virtual void HandleInput(const Event& e) override
@@ -72,7 +76,7 @@ public:
 			case KeyCode::RETURN:
 				switch (index) {
 				case 0: SetScene("Start"); break;
-				case 3: Stop(); break;
+				case 2: Stop(); break;
 				case 1: break;
 				}
 				break;
@@ -90,5 +94,6 @@ private:
 	std::vector<std::string>::iterator active;
 	int index;
 
+	Texture bomb;
 	Sound menu_click;
 };

@@ -3,9 +3,11 @@
 #include "GameObject.h"
 #include <list>
 #include <stack>
+#include <algorithm>
 
 #include "RenderAdapter.h"
 #include "AudioAdapter.h"
+
 
 class GameObject;
 

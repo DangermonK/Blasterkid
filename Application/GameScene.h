@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Scene.h"
-#include "Game.h"
+#include "SinglePlayerGame.h"
 
 #include "GridMap.h"
 #include "Player.h"
@@ -19,12 +19,12 @@ public:
 	virtual void Initialize() override
 	{
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
-		game = new Game();
-
+		game = new SinglePlayerGame(audio, renderer);
+		
 		player = game->Instantiate<Player>();
 		player->setPosition(10, 10);
 		player->SetTexture(renderer.LoadFromFile("Player_Idle.png"));
-
+		player->setZIndex(1);
 		map = game->Instantiate<GridMap>();
 		map->Create(15, 15);
 		map->SetTexture(renderer.LoadFromFile("Empty.png"));
@@ -46,12 +46,12 @@ public:
 
 	virtual void Update() override
 	{
-		game->Update(audio);
+		game->Update();
 	}
 
 	virtual void Render() override
 	{
-		game->Render(renderer);
+		game->Render();
 		
 		renderer.DrawUIButton(0, 0, std::to_string((int)(1 / Timer::getDeltaTime())) + " FPS");
 	}
@@ -83,6 +83,7 @@ public:
 			case KeyCode::LEFT_CTRL:
 			{
 				Bomb* bomb = game->Instantiate<Bomb>();
+				bomb->setZIndex(1);
 				bomb->SetTexture(bomb_tex);
 				bomb->setPosition(Vector(std::roundf(player->getPosition().getX()), std::roundf(player->getPosition().getY())));
 				bomb->SetMap(map);

@@ -28,9 +28,12 @@ public:
 	void SetTexture(const Texture& texture);
 	Texture GetTexture();
 
-	Vector getPosition();
+	Vector getPosition() const;
 	void setPosition(const float& x, const float& y);
 	void setPosition(const Vector& position);
+
+	void setZIndex(const int& z_index);
+	int getZIndex();
 
 protected:
 	Vector position;
@@ -38,6 +41,7 @@ protected:
 
 private:
 	const unsigned int U_ID;
+	int z_index;
 	Texture texture;
 
 };
