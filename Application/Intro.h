@@ -11,7 +11,7 @@ public:
 	virtual void Initialize() override
 	{
 		logo = renderer.LoadFromFile("Dangermonk_Logo.png");
-		intro = audio.LoadFromFile("intro.wav");
+		intro = audio.LoadSoundFromFile("intro.wav");
 		timer = 6;
 		alpha = 0;
 		scale = .7f;

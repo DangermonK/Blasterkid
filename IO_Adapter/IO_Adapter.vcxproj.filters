@@ -33,6 +33,9 @@
     <ClInclude Include="Sound.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RenderAdapter.cpp">
@@ -51,6 +54,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Sound.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

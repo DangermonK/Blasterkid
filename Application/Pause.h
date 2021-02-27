@@ -18,7 +18,7 @@ public:
 		menuitems.push_back("Beenden");
 
 		active = menuitems.begin();
-		menu_click = audio.LoadFromFile("menu_click.wav");
+		menu_click = audio.LoadSoundFromFile("menu_click.wav");
 
 	}
 

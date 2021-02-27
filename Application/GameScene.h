@@ -19,6 +19,10 @@ public:
 	virtual void Initialize() override
 	{
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+		
+		Music m = audio.LoadMusicFromFile("Track1.wav");
+		audio.Play(m);
+	
 		game = new SinglePlayerGame(audio, renderer);
 		
 		player = game->Instantiate<Player>();
