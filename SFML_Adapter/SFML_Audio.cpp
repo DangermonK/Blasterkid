@@ -9,8 +9,12 @@ Sound SFMLAudio::LoadSoundFromFile(const std::string& path) {
 	sf::SoundBuffer* buffer = new sf::SoundBuffer();
 	sf::Sound* sound = new sf::Sound();
 	Sound s((unsigned int)std::distance(sound_map.begin(), sound_map.end()));
+	
+	sound->setVolume(soundVolume);
+
 	buffer->loadFromFile(path);
 	sound->setBuffer(*buffer);
+	
 	sound_map.push_back(sound);
 	buffer_map.push_back(buffer);
 	return s;
@@ -18,8 +22,11 @@ Sound SFMLAudio::LoadSoundFromFile(const std::string& path) {
 
 Music SFMLAudio::LoadMusicFromFile(const std::string& path) {
 	sf::Music* music = new sf::Music();
-	music->openFromFile(path);
 	Music m((unsigned int)std::distance(music_map.begin(), music_map.end()));
+	
+	music->setVolume(musicVolume);
+	music->openFromFile(path);
+	
 	music_map.push_back(music);
 	return m;
 }
@@ -42,11 +49,13 @@ void SFMLAudio::ClearCache() {
 }
 
 void SFMLAudio::SetMusicVolume(const float& volume) {
+	musicVolume = volume;
 	for (auto it = music_map.begin(); it != music_map.end(); it++) {
 		(*it)->setVolume(volume);
 	}
 }
 void SFMLAudio::SetSoundVolume(const float& volume) {
+	soundVolume = volume;
 	for (auto it = sound_map.begin(); it != sound_map.end(); it++) {
 		(*it)->setVolume(volume);
 	}

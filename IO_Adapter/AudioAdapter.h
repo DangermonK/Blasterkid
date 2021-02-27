@@ -19,4 +19,8 @@ public:
 	virtual void Play(const Sound& a) = 0;
 	virtual void Play(const Music& a) = 0;
 
+protected:
+	float soundVolume;
+	float musicVolume;
+
 };
